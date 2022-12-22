@@ -16,7 +16,6 @@ import store from './store/'
 import MD5 from 'js-md5'
 
 Vue.prototype.$md5 = MD5
-let Base64 = require('js-base64').Base64;
 
 Vue.use(Vuebar)
 Vue.use(ElementUI)

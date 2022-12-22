@@ -58,18 +58,18 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
-        <xxx-dialog ref="xxxDialog"></xxx-dialog>
+        <sch-change-a-p-p-dialog ref="schChangeAPPDialog"></sch-change-a-p-p-dialog>
 
     </div>
 </template>
 
 <script>
-import xxxDialog from '../../components/chageApplication/schChangeAPPDialog'
+import schChangeAPPDialog from '../../components/chageApplication/schChangeAPPDialog'
 import Vue from 'vue'
 export default {
   name: 'stApprove',
   components: {
-    xxxDialog
+    schChangeAPPDialog
   },
   created () {
     this.findNotExamineStuModify()
@@ -107,20 +107,9 @@ export default {
       this.findNotExamineStuModify()
     },
     showDetail (applyrecords) {
-      console.info(applyrecords)
-      this.$refs.xxxDialog.show(applyrecords)
-    },
-    refuseSingle (row) {
-      let val = [row]
-      this.$axios.post('/api/stuApply/disagreeBatch', val).then(res => {
-        if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.data)
-        } else {
-          Vue.prototype.$message.error(res.data.data)
-        }
-      })
+      // console.info(applyrecords)
+      this.$refs.schChangeAPPDialog.show(applyrecords, this.findNotExamineStuModify)
     }
-
   }
 }
 </script>

@@ -63,7 +63,7 @@ export default {
     clothList () {
       let data = {gender: this.input, pageList: this.pageList}
       this.$axios.post('/api/cloth/schoolGetClothByGender', data).then(res => {
-        console.info(res)
+        // console.info(res)
         this.clotlist = res.data.data.records
         this.pageList.total = res.data.data.total
       })

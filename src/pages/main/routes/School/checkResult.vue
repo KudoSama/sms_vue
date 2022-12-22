@@ -91,7 +91,7 @@ export default {
   methods: {
     agreeByBatch () {
       this.$axios.post('/api/stuApply/agreeBatch', this.ids).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
         } else {
@@ -111,7 +111,7 @@ export default {
 
     findNotExamineStuApply () {
       this.$axios.post('/api/stuApply/selectExaminedStuApply', this.pageList).then(res => {
-        console.info(res)
+        // console.info(res)
         this.applistNot = res.data.data.records
         this.pageList.total = res.data.data.total
       })
@@ -125,7 +125,7 @@ export default {
       this.findNotExamineStuApply()
     },
     showDetail (applyrecords) {
-      console.info(applyrecords)
+      // console.info(applyrecords)
       this.$refs.applied.show(applyrecords)
     }
   }

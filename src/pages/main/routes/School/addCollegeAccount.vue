@@ -38,9 +38,6 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     addCollegeAccount () {
       let std = {
         colId: this.form.colId,
@@ -50,7 +47,7 @@ export default {
       }
 
       this.$axios.post('api/college/add', std).then(res => {
-        console.info(res.data)
+        // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.message)
         } else {

@@ -24,8 +24,8 @@
               <div class="item-msg" v-if="nowIndex === index">{{ item.msg }}</div>
             </el-form>
             <span slot="footer" class="dialog-footer">
+              <el-button type="primary" @click="agreeSingle">提交</el-button>
     <el-button @click="dialogVisible = false">取消</el-button>
-    <el-button type="success" @click="agreeSingle">提交</el-button>
   </span>
         </el-dialog>
     </div>
@@ -41,7 +41,8 @@ export default {
       dialogVisible: false,
       applyrecords: {},
       nowIndex: -1,
-      item: {msg: '1为学校审核通过 || 2为学院审核通过 || 3为辅导员审核通过 || 4为未审核 || 0为审核不通过'}
+      item: {msg: '1为学校审核通过 || 2为学院审核通过 || 3为辅导员审核通过 || 4为未审核 || 0为审核不通过'},
+      fun: ''
     }
   },
   mounted () {
@@ -59,10 +60,11 @@ export default {
             state: this.applyrecords.state
           }
           this.$axios.post('/api/stuApply/schoolModify', val).then(res => {
-            console.info(res)
+            // console.info(res)
             if (res.data !== null && res.data.status === true) {
               Vue.prototype.$message.success(res.data.message)
               this.dialogVisible = false
+              this.fun()
             } else {
               Vue.prototype.$message.error(res.data.message)
             }
@@ -70,10 +72,11 @@ export default {
         })
         .catch(_ => {})
     },
-    show (applyrecords) {
-      console.info(applyrecords)
+    show (applyrecords, fun) {
+      // console.info(applyrecords)
       this.dialogVisible = true
       this.applyrecords = applyrecords
+      this.fun = fun
     },
     handleClose (done) {
       this.$confirm('确认关闭？')
@@ -85,7 +88,7 @@ export default {
     },
     props: ['value'],
     dateFormat: function (row, column) {
-      console.log(row, column)
+      // console.log(row, column)
       const date = row[column.property]
       if (date === undefined) {
         return ''

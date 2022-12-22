@@ -56,7 +56,7 @@ export default {
             batchDateend: this.batchRecord.batchDateend
           }
           this.$axios.post('/api/batch/modify', val).then(res => {
-            console.info(res)
+            // console.info(res)
             if (res.data.status === true) {
               this.dialogVisible = false
               Vue.prototype.$message.success(res.data.message)
@@ -69,7 +69,7 @@ export default {
     },
     props: ['value'],
     dateFormat: function (row, column) {
-      console.log(row, column)
+      // console.log(row, column)
       const date = row[column.property]
       if (date === undefined) {
         return ''

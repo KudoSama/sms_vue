@@ -8,7 +8,7 @@
                 :before-close="handleClose">
             <el-form ref="form" :model="form" label-width="80px">
                 <el-form-item label="批次号">
-                    <el-input v-model="applyRecords.id" :readonly="0"></el-input>
+                    <el-input v-model="applyRecords.id" disabled="true"></el-input>
                 </el-form-item>
                 <el-form-item label="衣物id">
                     <el-input v-model="applyRecords.clothId"></el-input>
@@ -21,8 +21,8 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
+              <el-button type="primary" @click="agreeSingle">提交</el-button>
     <el-button @click="dialogVisible = false">取消</el-button>
-    <el-button type="success" @click="agreeSingle">提交</el-button>
   </span>
         </el-dialog>
     </div>
@@ -36,12 +36,13 @@ export default {
   data () {
     return {
       dialogVisible: false,
-      applyRecords: {}
+      applyRecords: {},
+      fun: ''
     }
   },
   methods: {
     agreeSingle () {
-      this.$confirm('请问修改该批次信息吗？', '提示', {type: 'warning'})
+      this.$confirm('请问修改该条申请记录吗？', '提示', {type: 'warning'})
         .then(_ => {
           let val = {
             id: this.applyRecords.id,
@@ -51,10 +52,11 @@ export default {
             appReason: this.applyRecords.appReason
           }
           this.$axios.post('/api/stuApply/studentModify', val).then(res => {
-            console.info(res)
+            // console.info(res)
             if (res.data !== null && res.data.status === true) {
               Vue.prototype.$message.success(res.data.message)
               this.dialogVisible = false
+              this.fun()
             } else {
               Vue.prototype.$message.error(res.data.message)
             }
@@ -64,9 +66,10 @@ export default {
           this.dialogVisible = false
         })
     },
-    show (applyRecords) {
+    show (applyRecords, fun) {
       this.dialogVisible = true
       this.applyRecords = applyRecords
+      this.fun = fun
     },
     handleClose (done) {
       this.$confirm('确认关闭？')
@@ -78,7 +81,7 @@ export default {
     },
     props: ['value'],
     dateFormat: function (row, column) {
-      console.log(row, column)
+      // console.log(row, column)
       const date = row[column.property]
       if (date === undefined) {
         return ''

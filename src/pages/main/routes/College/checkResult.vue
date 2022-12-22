@@ -90,7 +90,7 @@ export default {
   methods: {
     agreeByBatch () {
       this.$axios.post('/api/stuApply/agreeBatch', this.ids).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
         } else {
@@ -101,14 +101,14 @@ export default {
     aggreeSingle (row) {
       let val = [row.id]
       this.$axios.post('/api/stuApply/agreeBatch', val).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
         } else {
           Vue.prototype.$message.error(res.data.data)
         }
       })
-      console.log(val)
+      // console.log(val)
     },
     props: ['value'],
     dateFormat: function (row, column) {
@@ -119,17 +119,9 @@ export default {
       // 这里的格式根据需求修改
       return moment(date).format('YYYY-MM-DD HH:mm:ss')
     },
-
-    handleSizeChange (val) {
-      console.log(`每页 ${val} 条`)
-    },
-    handleCurrentChange (val) {
-      console.log(`当前页: ${val}`)
-    },
-
     findNotExamineStuApply () {
       this.$axios.post('/api/stuApply/selectExaminedStuApply', this.pageList).then(res => {
-        console.info(res)
+        // console.info(res)
         this.applistNot = res.data.data.records
         this.pageList.total = res.data.data.total
       })
@@ -143,7 +135,7 @@ export default {
       this.findNotExamineStuApply()
     },
     showDetail (applyrecords) {
-      console.info(applyrecords)
+      // console.info(applyrecords)
       this.$refs.applied.show(applyrecords)
     }
   }

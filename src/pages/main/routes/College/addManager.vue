@@ -40,18 +40,15 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     addManager () {
       let std = {
         manId: this.form.manId,
         manName: this.form.manName,
         manPassword: this.$md5(this.form.manPassword)
       }
-      console.info(std.manPassword)
+      // console.info(std.manPassword)
       this.$axios.post('api/manager/add', std).then(res => {
-        console.info(res.data)
+        // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.message)
         } else {

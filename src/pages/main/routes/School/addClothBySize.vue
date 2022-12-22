@@ -57,9 +57,6 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     addClothByid () {
       if (this.value1 === true) {
         let clthsize = {

@@ -57,7 +57,7 @@ export default {
   methods: {
     getSchoolInfo () {
       this.$axios.post('/api/school/getSchool').then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           this.school = res.data.data
         } else {

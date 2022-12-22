@@ -2,7 +2,7 @@
     <div>
         <h1 align="center">修改申请</h1>
         <el-table
-                :data="applistNot"
+                :data="appListNot"
                 border
                 style="width: 100%">
             <el-table-column
@@ -40,31 +40,43 @@
                     fixed="right"
                     label="操作">
                 <template slot-scope="scope">
-                    <el-button type="primary" size="mini" @click="showDetail(scope.row)">修改</el-button>
+                    <el-button type="primary" size="medium" @click="showDetail(scope.row)">修 改</el-button>
+                  <el-button type="danger" size="medium" @click="deleteApply(scope.row.id)">删 除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <stu-apply-not ref="stuApplyNot"></stu-apply-not>
+      <el-pagination
+          background
+          @size-change="pageSizeChange"
+          @current-change="pageNoChange"
+          :current-page="pageList.pageNo"
+          :page-sizes="[10, 20, 50, 100]"
+          :page-size="pageList.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="pageList.total">
+      </el-pagination>
+        <stu-change-appdialog ref="stuChangeAppdialog"></stu-change-appdialog>
 
     </div>
 </template>
 
 <script>
-import stuApplyNot from '../../components/chageApplication/stuChangeAppdialog'
 import moment from 'moment'
 import Vue from 'vue'
+import stuChangeAppdialog from '../../components/chageApplication/stuChangeAppdialog'
 export default {
   name: 'stApprove',
   components: {
-    stuApplyNot
+    stuChangeAppdialog
   },
   data: function () {
     return {
-      Ppagelst: {
+      pageList: {
         pageNo: 1,
-        pageSize: 10
+        pageSize: 10,
+        total: 0
       },
-      applistNot: [],
+      appListNot: [],
       // 要通过的id集合
       ids: []
     }
@@ -73,28 +85,6 @@ export default {
     this.findNotExamineStuModify()
   },
   methods: {
-    agreeByBatch () {
-      this.$axios.post('/api/stuApply/studentModify', this.ids).then(res => {
-        console.info(res)
-        if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.data)
-        } else {
-          Vue.prototype.$message.error(res.data.data)
-        }
-      })
-    },
-    agreeSingle (row) {
-      let val = [row.id]
-      this.$axios.post('/api/stuApply/agreeBatch', val).then(res => {
-        console.info(res)
-        if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.data)
-        } else {
-          Vue.prototype.$message.error(res.data.data)
-        }
-      })
-      console.log(val)
-    },
     props: ['value'],
     dateFormat: function (row, column) {
       const date = row[column.property]
@@ -104,37 +94,45 @@ export default {
       // 这里的格式根据需求修改
       return moment(date).format('YYYY-MM-DD HH:mm:ss')
     },
-
     findNotExamineStuModify () {
-      let pagelst = {
-        pageNo: 1,
-        pageSize: 10
-
-      }
-      this.$axios.post('/api/stuApply/studentSelect', pagelst).then(res => {
+      this.$axios.post('/api/stuApply/studentSelect', this.pageList).then(res => {
         if (res.data.data !== null) {
-          this.applistNot = res.data.data.records
-          Vue.prototype.$message.success(res.data.message)
+          this.appListNot = res.data.data.records
+          this.pageList.total = res.data.data.total
+          // Vue.prototype.$message.success(res.data.message)
         } else {
           Vue.prototype.$message.error(res.data.message)
         }
       })
     },
-    showDetail (applyrecords) {
-      console.info(applyrecords)
-      this.$refs.stuApplyNot.show(applyrecords)
+    deleteApply (id) {
+      this.$confirm('请问删除该条申请记录吗？', '提示', {type: 'warning'})
+        .then(_ => {
+          let val = {id: id}
+          this.$axios.post('/api/stuApply/deleteApply', val).then(res => {
+            // console.info(res)
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.data)
+              this.findNotExamineStuModify()
+            } else {
+              Vue.prototype.$message.error(res.data.data)
+            }
+          })
+        })
+        .catch(_ => {})
     },
-    refuseSingle (row) {
-      let val = [row]
-      this.$axios.post('/api/stuApply/disagreeBatch', val).then(res => {
-        if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.data)
-        } else {
-          Vue.prototype.$message.error(res.data.data)
-        }
-      })
+    showDetail (applyrecords) {
+      // console.info(applyrecords)
+      this.$refs.stuChangeAppdialog.show(applyrecords, this.findNotExamineStuModify)
+    },
+    pageSizeChange (val) {
+      this.pageList.pageSize = val
+      this.findNotExamineStuModify()
+    },
+    pageNoChange (val) {
+      this.pageList.pageNo = val
+      this.findNotExamineStuModify()
     }
-
   }
 }
 </script>

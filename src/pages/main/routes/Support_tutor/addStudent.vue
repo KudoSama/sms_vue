@@ -2,7 +2,7 @@
 <template xmlns:el-col="http://www.w3.org/1999/html">
 <!--    stuId, stuName, gender, enDate（时间戳, classId, stuPassword-->
     <div>
-        <h1>添加学生</h1>
+        <h1 align="center">添加学生</h1>
         <el-form ref="form" :model="form" label-width="100px">
             <el-col :span="10">
                 <el-form-item label="学号" >
@@ -56,9 +56,6 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     addstudent () {
       let std = {
         stuId: this.form.stuId,
@@ -69,7 +66,7 @@ export default {
         stuPassword: this.$md5(this.form.stuPassword)
       }
       this.$axios.post('api/student/add', std).then(res => {
-        console.info(res.data)
+        // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.message)
         } else {

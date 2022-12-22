@@ -40,7 +40,7 @@ export default {
     srefuseSingle () {
       let val = [this.applyrecords]
       this.$axios.post('/api/stuApply/disagreeBatch', val).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
         } else {

@@ -6,7 +6,7 @@
       <div class="header-right">
         <span class="header-title text-center">欢迎您，{{userName}}</span>
       <a
-        href="javascript:;"
+        href="javascript:"
         class="header-logout"
         @click="logout"
         role="button"
@@ -25,7 +25,7 @@
 import Icon from '@/components/Icon'
 import {Tooltip} from 'element-ui'
 import {mapGetters} from 'vuex'
-import Vue from 'vue'
+
 export default {
   name: 's-header',
   data: function () {
@@ -33,13 +33,6 @@ export default {
       curBatch: null
     }
   },
-  // props: {
-  //   collapseTrigger: Function,
-  //   collapse: Boolean,
-  //   logout: Function,
-  //   userName: String,
-  //   roleName: String
-  // },
   components: {
     's-icon': Icon,
     's-tooltip': Tooltip
@@ -68,13 +61,11 @@ export default {
   created () {
     this.getCurBatch()
     this.$forceUpdate()
-    console.info(this.userName)
+    // console.info(this.userName)
   },
   methods: {
     logout () {
       this.$confirm('即将退出登录, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         this.$axios.post('/api/user/refresh')
@@ -86,7 +77,7 @@ export default {
     },
     getCurBatch () {
       this.$axios.post('/api/batch/getCurBatch').then(res => {
-        console.info(res.data)
+        // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
           // Vue.prototype.$message.success(res.data.batchId)
           // Vue.prototype.$message.success('当前批次：' + String(res.data.data.batchId))

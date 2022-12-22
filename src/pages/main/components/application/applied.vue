@@ -36,7 +36,7 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="success" @click="dialogVisible = false">关 闭</el-button>
 
   </span>
         </el-dialog>
@@ -55,7 +55,6 @@ export default {
     }
   },
   methods: {
-
     show (applyrecords) {
       this.dialogVisible = true
       this.applyrecords = applyrecords
@@ -69,7 +68,7 @@ export default {
     },
     props: ['value'],
     dateFormat: function (row, column) {
-      console.log(row, column)
+      // console.log(row, column)
       const date = row[column.property]
       if (date === undefined) {
         return ''

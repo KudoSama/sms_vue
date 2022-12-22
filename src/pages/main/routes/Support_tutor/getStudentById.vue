@@ -19,11 +19,41 @@
                 prop="stuName"
                 label="姓名">
         </el-table-column>
+      <el-table-column
+          prop="gender"
+          label="性别">
+      </el-table-column>
         <el-table-column
                 prop="enDate"
-                label="入学时间"
+                label="入学日期"
                 :formatter="dateFormat">
         </el-table-column>
+      <el-table-column
+          prop="enable"
+          label="是否为贫困生">
+        <template slot-scope="scope">
+          <div v-if="enableList.includes(scope.row.stuId)">
+            是
+          </div>
+          <div v-else>否</div>
+        </template>
+      </el-table-column>
+      <el-table-column
+          label="贫困生操作"
+          width="auto">
+        <template slot-scope="scope">
+          <el-button type="primary" size="mini" @click="setEnable(scope.row)">添加</el-button>
+          <el-button type="danger" size="mini" @click="removeEnable(scope.row)">移出</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
+          label="账号操作"
+          width="200px">
+        <template slot-scope="scope">
+          <el-button type="primary" size="mini" @click="resetPassword(scope.row)">重置密码</el-button>
+          <el-button type="danger" size="mini" @click="deleteStudent(scope.row)">删除学生</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   <el-pagination
       background
@@ -40,6 +70,7 @@
 
 <script>
 import moment from 'moment'
+import Vue from 'vue'
 export default {
   data () {
     return {
@@ -54,7 +85,8 @@ export default {
       gender: '',
       user: {
         id: null
-      }
+      },
+      enableList: []
     }
   },
   created () {
@@ -68,7 +100,75 @@ export default {
         return ''
       }
       // 这里的格式根据需求修改
-      return moment(date).format('YYYY-MM-DD HH:mm:ss')
+      return moment(date).format('YYYY-MM-DD')
+    },
+    resetPassword (data) {
+      this.$confirm('是否重置该学生账号的登录密码？', '提示', {type: 'warning'})
+        .then(_ => {
+          let student = {stuId: data.stuId, stuName: data.stuName}
+          this.$axios.post('/api/student/resetPassword', student).then(res => {
+            // console.log(res)
+            if (res.data.status) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        })
+        .catch(_ => {})
+    },
+    deleteStudent (data) {
+      this.$confirm('是否删除该学生账号？', '提示', {type: 'warning'})
+        .then(_ => {
+          this.$confirm('该操作将清空该学生的贫困生资格与申请记录，是否继续？', '提示', {type: 'warning'})
+            .then(_ => {
+              this.$axios.post('api/student/delete', data).then(res => {
+                // console.info(res)
+                if (res.data !== null && res.data.status === true) {
+                  Vue.prototype.$message.success(res.data.message)
+                  this.stuList()
+                } else {
+                  Vue.prototype.$message.error(res.data.message)
+                }
+              })
+            })
+            .catch(_ => {})
+        })
+        .catch(_ => {})
+    },
+    setEnable (data) {
+      this.$confirm('是否将该学生设置为贫困生？', '提示', {type: 'warning'})
+        .then(_ => {
+          this.$axios.post('api/enable/add', data).then(res => {
+            // console.info(res.data)
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.data)
+              this.stuList()
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        })
+        .catch(_ => {})
+    },
+    removeEnable (data) {
+      this.$confirm('是否将该学生移出贫困生？', '提示', {type: 'warning'})
+        .then(_ => {
+          this.$confirm('该操作将清空该学生的申请记录，是否继续？', '提示', {type: 'warning'})
+            .then(_ => {
+              this.$axios.post('api/enable/delete', data).then(res => {
+                // console.info(res)
+                if (res.data !== null && res.data.status === true) {
+                  Vue.prototype.$message.success(res.data.message)
+                  this.stuList()
+                } else {
+                  Vue.prototype.$message.error(res.data.message)
+                }
+              })
+            })
+            .catch(_ => {})
+        })
+        .catch(_ => {})
     },
     stuList () {
       this.$axios.post('/api/student/getByManagerId', this.pageList).then(res => {
@@ -76,10 +176,21 @@ export default {
         this.list = res.data.data.records
         this.pageList.total = res.data.data.total
       })
+      this.getEnableList()
+    },
+    getEnableList () {
+      this.$axios.post('/api/enable/getEnableList').then(res => {
+        let originList = res.data.data
+        let list = []
+        for (let i = 0; i < originList.length; i++) {
+          list.push(originList[i]['stuId'])
+        }
+        this.enableList = list
+      })
     },
     getStuById () {
       this.$axios.post('/api/student/getByStuId', this.user).then(res => {
-        console.log(res)
+        // console.log(res)
         this.student = res.data.data
         this.list = [this.student]
       })

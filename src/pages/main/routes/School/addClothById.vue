@@ -46,9 +46,6 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     addClothByid () {
       let clth = {
         clothId: this.form.clothId,
@@ -59,8 +56,8 @@ export default {
       }
 
       this.$axios.post('api/cloth/add', clth).then(res => {
-        console.info(clth)
-        console.info(res.data)
+        // console.info(clth)
+        // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.message)
         } else {

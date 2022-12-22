@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <h1 align="center">重置学院账号登录密码</h1>
+    <h1 align="center">重置学院用户密码</h1>
     <el-table
         :data="collegeList"
         border
@@ -20,7 +20,7 @@
           label="操作"
           width="auto">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="resetPassword(scope.row)">重置密码</el-button>
+          <el-button type="primary" size="medium" @click="resetPassword(scope.row)">重置密码</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -55,7 +55,7 @@ export default {
         .then(_ => {
           let college = {colId: data.colId, colName: data.colName}
           this.$axios.post('/api/college/resetPassword', college).then(res => {
-            console.log(res)
+            // console.log(res)
             if (res.data.status) {
               Vue.prototype.$message.success(res.data.message)
             } else {

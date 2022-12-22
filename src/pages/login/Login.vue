@@ -76,7 +76,7 @@ export default {
         id: this.id,
         password: Base64.encode(this.$md5(this.password)) // base64+md5双重加密
       }
-      console.log(user)
+      // console.log(user)
       if (this.value === '1') {
         this.$axios.post('/api/school/login', user).then(res => {
           if (res.data.data !== null) {
@@ -106,7 +106,7 @@ export default {
         })
       } else if (this.value === '4') {
         this.$axios.post('/api/student/login', user).then(res => {
-          console.info(res.data.password)
+          // console.info(res.data.password)
           if (res.data.data !== null) {
             this.$router.push({name: '登陆成功'})
             this.$router.push('/main')

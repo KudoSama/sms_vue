@@ -6,7 +6,8 @@
             :data="applistNot"
             border
             stripe
-            style="width: 100%; border-radius: 4px">
+            style="width: 100%"
+            @selection-change="handleSelectionChange">
         <el-table-column
                 type="selection"
                 width="55">
@@ -48,7 +49,7 @@
                 label="操作">
             <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="showDetail(scope.row)">详情</el-button>
-                <el-button @click="aggreeSingle(scope.row)" type="success" size="mini">同意</el-button>
+                <el-button @click="agreeSingle(scope.row)" type="success" size="mini">同意</el-button>
                 <el-button type="danger" size="mini" @click="refuseSingle(scope.row)">拒绝</el-button>
             </template>
         </el-table-column>
@@ -97,25 +98,30 @@ export default {
   methods: {
     agreeByBatch () {
       this.$axios.post('/api/stuApply/agreeBatch', this.ids).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
+          this.findNotExamineStuApply()
         } else {
           Vue.prototype.$message.error(res.data.data)
         }
       })
     },
-    aggreeSingle (row) {
+    handleSelectionChange (checkedrecords) {
+      this.ids = checkedrecords.map(applyRecords => applyRecords.id)
+    },
+    agreeSingle (row) {
       let val = [row.id]
       this.$axios.post('/api/stuApply/agreeBatch', val).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
+          this.findNotExamineStuApply()
         } else {
           Vue.prototype.$message.error(res.data.data)
         }
       })
-      console.log(val)
+      // console.log(val)
     },
     props: ['value'],
     dateFormat: function (row, column) {
@@ -128,7 +134,7 @@ export default {
     },
     findNotExamineStuApply () {
       this.$axios.post('/api/stuApply/selectNotExamineStuApply', this.pageList).then(res => {
-        console.info(res)
+        // console.info(res)
         this.applistNot = res.data.data.records
         this.pageList.total = res.data.data.total
       })

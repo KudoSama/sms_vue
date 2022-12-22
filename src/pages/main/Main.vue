@@ -1,6 +1,6 @@
 <template>
   <div>
-    <suncaper-layout
+    <layout
             theme="dark"
             :logo="logo"
             :sidebar-list="sidebarList"
@@ -22,7 +22,7 @@ export default {
         src: logo,
         alt: '',
         firstDes: '下北泽工业大学',
-        secondDes: '寒衣补助综合管理系统'
+        secondDes: '寒衣补助管理系统'
       }
     }
   },
@@ -41,7 +41,7 @@ export default {
     }
   },
   components: {
-    'suncaper-layout': Layout
+    'layout': Layout
   }
 }
 </script>

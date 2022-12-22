@@ -54,7 +54,7 @@ export default {
         .then(_ => {
           let val = {inNum: this.inNum}
           this.$axios.post('/api/school/resetPassword', val).then(res => {
-            console.info(res)
+            // console.info(res)
             if (res.data !== null && res.data.status === true) {
               Vue.prototype.$message.success(res.data.message)
               this.dialogVisible = false

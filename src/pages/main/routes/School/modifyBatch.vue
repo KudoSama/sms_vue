@@ -78,7 +78,7 @@ export default {
       return moment(date).format('YYYY-MM-DD HH:mm:ss')
     },
     showDetail (batchRecord) {
-      console.info(batchRecord)
+      // console.info(batchRecord)
       this.$refs.modifyBatchDialog.show(batchRecord)
     },
     deleteBatch (batchRecord) {
@@ -92,7 +92,7 @@ export default {
                 batchDateend: batchRecord.batchDateend
               }
               this.$axios.post('/api/batch/delete', val).then(res => {
-                console.info(res)
+                // console.info(res)
                 if (res.data.status === true) {
                   this.dialogVisible = false
                   Vue.prototype.$message.success(res.data.message)

@@ -7,11 +7,6 @@ export default {
           groupTitle: '学校'
         },
         {
-          path: '/main/School/modifyInfo',
-          icon: 'suncaper-menu-unfold',
-          title: '修改账号信息'
-        },
-        {
           path: '/main/School/School',
           icon: 'suncaper-menu-unfold',
           title: '批次管理',
@@ -67,7 +62,7 @@ export default {
         {
           path: '/main/School/scApprove',
           icon: 'suncaper-menu-unfold',
-          title: '申请审核',
+          title: '申请管理',
           group: 'clothApply',
           children: [
             {
@@ -81,7 +76,7 @@ export default {
               title: '审核记录'
             },
             {
-              path: '/main/School/changeApply',
+              path: '/main/School/modifyApply',
               icon: 'suncaper-menu-unfold',
               title: '修改申请'
             }
@@ -100,24 +95,21 @@ export default {
               title: '添加学院用户'
             },
             {
-              path: '/main/School/resetCollegePassword',
+              path: '/main/School/modifyCollegeInfo',
               icon: 'suncaper-menu-unfold',
-              title: '重置学院用户'
+              title: '重置学院用户密码'
             }
           ]
         },
         {
           path: '/main/School/exportFile',
           icon: 'suncaper-menu-unfold',
-          title: '数据管理',
-          group: 'book',
-          children: [
-            {
-              path: '/main/School/exportFile',
-              icon: 'suncaper-menu-unfold',
-              title: '导出文件'
-            }
-          ]
+          title: '导出数据'
+        },
+        {
+          path: '/main/School/modifyInfo',
+          icon: 'suncaper-menu-unfold',
+          title: '账号信息维护'
         }
       ]
     },
@@ -209,30 +201,17 @@ export default {
               title: '添加学生'
             },
             {
-              path: '/main/Support_Tutor/addPoverty',
-              icon: 'suncaper-menu-unfold',
-              title: '添加贫困生'
-            },
-            {
               path: '/main/Support_Tutor/getStudentById',
               icon: 'suncaper-menu-unfold',
-              title: '查询学生'
+              title: '学生信息维护'
             }
 
           ]
         },
         {
-          path: '/main/Support_Tutor',
+          path: '/main/Support_Tutor/exportFile',
           icon: 'suncaper-menu-unfold',
-          title: '数据管理',
-          group: 'book',
-          children: [
-            {
-              path: '/main/Support_Tutor/exportFile',
-              icon: 'suncaper-menu-unfold',
-              title: '导出文件'
-            }
-          ]
+          title: '数据导出'
         }
       ]
     },
@@ -244,22 +223,12 @@ export default {
         {
           path: '/main/Student/stuGetCloth',
           icon: 'suncaper-menu-unfold',
-          title: '衣物查询'
-        },
-        {
-          path: '/main/Student/stuShowImage',
-          icon: 'suncaper-menu-unfold',
-          title: '衣物展示'
-        },
-        {
-          path: '/main/Student/stuApply',
-          icon: 'suncaper-menu-unfold',
-          title: '衣物申请'
+          title: '衣物查询与申请'
         },
         {
           path: '/main/Student/modifyApply',
           icon: 'suncaper-menu-unfold',
-          title: '修改申请'
+          title: '申请修改与删除'
         }
       ]
     }

@@ -1,11 +1,6 @@
 <template>
     <div>
-        <h1 align="center">查询衣物</h1>
-        <h2>请输入批次号</h2>
-        <el-input style="width: 200px" v-model="input"  placeholder="请输入批次号"></el-input>
-      <el-button type="primary" @click="clothList">查询</el-button>
-        <br>
-        <h3>查询结果</h3>
+        <h1 align="center">当前批次衣物</h1>
         <el-table
             border
             stripe
@@ -46,6 +41,9 @@
 <script>
 export default {
   name: 'schoolGetClothByBatchId',
+  created () {
+    this.clothList()
+  },
   data () {
     return {
       clotlist: [],
@@ -61,9 +59,8 @@ export default {
   methods: {
 
     clothList () {
-      let data = {batchId: this.input, pageList: this.pageList}
-      this.$axios.post('/api/cloth/getClothByBatchId', data).then(res => {
-        console.info(res)
+      this.$axios.post('/api/cloth/getClothByBatchId', this.pageList).then(res => {
+        // console.info(res)
         this.clotlist = res.data.data.records
         this.pageList.total = res.data.data.total
       })

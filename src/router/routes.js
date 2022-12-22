@@ -44,11 +44,11 @@ const mainPage = [
           )
       },
       {
-        path: 'School/resetCollegePassword',
-        name: 'school_resetCollegePassword',
+        path: 'School/modifyCollegeInfo',
+        name: 'school_modifyCollegeInfo',
         component: () =>
           import(
-            /* webpackChunkName: "Second" */ '../pages/main/routes/School/resetCollegePassword'
+            /* webpackChunkName: "Second" */ '../pages/main/routes/School/modifyCollegeInfo'
           )
       },
       {
@@ -116,11 +116,11 @@ const mainPage = [
           )
       },
       {
-        path: 'School/changeApply',
-        name: 'school_changeApply',
+        path: 'School/modifyApply',
+        name: 'school_modifyApply',
         component: () =>
             import(
-              /* webpackChunkName: "Second" */ '../pages/main/routes/School/changeApply'
+              /* webpackChunkName: "Second" */ '../pages/main/routes/School/modifyApply'
             )
       },
       {
@@ -180,14 +180,6 @@ const mainPage = [
             )
       },
       {
-        path: 'Student/stuShowImage',
-        name: 'Student_stuShowImage',
-        component: () =>
-            import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Student/stuShowImage'
-            )
-      },
-      {
         path: 'Student/modifyApply',
         name: 'Student_modifyApply',
         component: () =>
@@ -196,24 +188,8 @@ const mainPage = [
             )
       },
       {
-        path: 'Student/stuApply',
-        name: 'Student_stuApply',
-        component: () =>
-            import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Student/stuapply'
-            )
-      },
-      {
-        path: 'Support_Tutor/addPoverty',
-        name: 'Support_addPoverty',
-        component: () =>
-            import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/addPoverty'
-            )
-      },
-      {
         path: 'Support_Tutor/stApprove',
-        name: 'Support_addPoverty',
+        name: 'Support_stApprove',
         component: () =>
             import(
               /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/stApprove'

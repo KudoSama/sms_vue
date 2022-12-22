@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 align="center">添加衣物批次</h1>
+        <h1 align="center">添加申请批次</h1>
         <el-form ref="form" :model="form" label-width="100px">
             <el-col :span="10">
                 <el-form-item label="批次号" >
@@ -12,7 +12,7 @@
                 <el-col :span="5">
                     <el-date-picker type="date" placeholder="选择开始日期" v-model="form.batchDatestart" style="width: 100%;"></el-date-picker>
                 </el-col>
-                <el-col class="line" :span="0.1">-</el-col>
+                <el-col class="line" :span="0.1">—</el-col>
                 <el-col :span="5">
                     <el-date-picker placeholder="选择结束日期" v-model="form.batchDateend" style="width: 100%;"></el-date-picker>
                 </el-col>
@@ -41,9 +41,6 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
     clear () {
       this.form = this.$options.data().form
     },
@@ -53,9 +50,8 @@ export default {
         batchDatestart: this.form.batchDatestart,
         batchDateend: this.form.batchDateend
       }
-
       this.$axios.post('api/batch/add', std).then(res => {
-        console.info(res.data)
+        // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.message)
         } else {

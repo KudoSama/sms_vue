@@ -59,7 +59,7 @@ export default {
     saggreeSingle () {
       let val = [this.applyRecords.id]
       this.$axios.post('/api/stuApply/agreeBatch', val).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
         } else {
@@ -70,7 +70,7 @@ export default {
     srefuseSingle () {
       let val = [this.applyRecords]
       this.$axios.post('/api/stuApply/disagreeBatch', val).then(res => {
-        console.info(res)
+        // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
         } else {
@@ -91,7 +91,7 @@ export default {
     },
     props: ['value'],
     dateFormat: function (row, column) {
-      console.log(row, column)
+      // console.log(row, column)
       const date = row[column.property]
       if (date === undefined) {
         return ''
