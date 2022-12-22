@@ -2,10 +2,11 @@
 <div>
     <h1 align="center">学生查询界面</h1>
   <el-form>
-    <el-input v-model="gender" style="width: 150px" clearable placeholder="请输入性别"></el-input>
-    <el-button type="primary" @click="getStuByGender">查询</el-button>
-    <el-input v-model="user.id" style="width: 300px" clearable placeholder="请输入学号"></el-input>
-    <el-button type="primary" @click="getStuById">查询</el-button>
+    <el-input v-model="gender" style="width: 200px" clearable placeholder="请输入性别（男/女）"></el-input>
+    <el-button type="primary" @click="getStuByGender">性别查询</el-button>
+    <br><br>
+    <el-input v-model="user.id" style="width: 200px" clearable placeholder="请输入学号"></el-input>
+    <el-button type="primary" @click="getStuById">学号查询</el-button>
   </el-form>
     <el-table
             :data="list"
@@ -39,10 +40,10 @@
         </template>
       </el-table-column>
       <el-table-column
-          label="贫困生操作"
+          label="贫困生认定"
           width="auto">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="setEnable(scope.row)">添加</el-button>
+          <el-button type="primary" size="mini" @click="setEnable(scope.row)">认定</el-button>
           <el-button type="danger" size="mini" @click="removeEnable(scope.row)">移出</el-button>
         </template>
       </el-table-column>
@@ -86,7 +87,8 @@ export default {
       user: {
         id: null
       },
-      enableList: []
+      enableList: [],
+      pageFlag: 0
     }
   },
   created () {
@@ -126,7 +128,13 @@ export default {
                 // console.info(res)
                 if (res.data !== null && res.data.status === true) {
                   Vue.prototype.$message.success(res.data.message)
-                  this.stuList()
+                  if (this.pageFlag === 0) {
+                    this.stuList()
+                  } else if (this.pageFlag === 1) {
+                    this.getStuById()
+                  } else if (this.pageFlag === 2) {
+                    this.getStuByGender()
+                  }
                 } else {
                   Vue.prototype.$message.error(res.data.message)
                 }
@@ -143,7 +151,13 @@ export default {
             // console.info(res.data)
             if (res.data !== null && res.data.status === true) {
               Vue.prototype.$message.success(res.data.data)
-              this.stuList()
+              if (this.pageFlag === 0) {
+                this.stuList()
+              } else if (this.pageFlag === 1) {
+                this.getStuById()
+              } else if (this.pageFlag === 2) {
+                this.getStuByGender()
+              }
             } else {
               Vue.prototype.$message.error(res.data.message)
             }
@@ -160,7 +174,13 @@ export default {
                 // console.info(res)
                 if (res.data !== null && res.data.status === true) {
                   Vue.prototype.$message.success(res.data.message)
-                  this.stuList()
+                  if (this.pageFlag === 0) {
+                    this.stuList()
+                  } else if (this.pageFlag === 1) {
+                    this.getStuById()
+                  } else if (this.pageFlag === 2) {
+                    this.getStuByGender()
+                  }
                 } else {
                   Vue.prototype.$message.error(res.data.message)
                 }
@@ -171,6 +191,7 @@ export default {
         .catch(_ => {})
     },
     stuList () {
+      this.pageFlag = 0
       this.$axios.post('/api/student/getByManagerId', this.pageList).then(res => {
         // console.info(res)
         this.list = res.data.data.records
@@ -189,27 +210,49 @@ export default {
       })
     },
     getStuById () {
+      this.pageFlag = 1
       this.$axios.post('/api/student/getByStuId', this.user).then(res => {
         // console.log(res)
         this.student = res.data.data
-        this.list = [this.student]
+        if (this.student === null) {
+          this.list = null
+        } else {
+          this.list = [this.student]
+        }
       })
     },
     getStuByGender () {
+      this.pageFlag = 2
       let data = {pageList: this.pageList, gender: this.gender}
       this.$axios.post('/api/student/getByGender', data).then(res => {
-        // console.info(res)
-        this.list = res.data.data.records
-        this.pageList.total = res.data.data.total
+        if (res.data.data === null) {
+          this.list = null
+          this.pageList.total = 0
+        } else {
+          this.list = res.data.data.records
+          this.pageList.total = res.data.data.total
+        }
       })
     },
     pageSizeChange (val) {
       this.pageList.pageSize = val
-      this.stuList()
+      if (this.pageFlag === 0) {
+        this.stuList()
+      } else if (this.pageFlag === 1) {
+        this.getStuById()
+      } else if (this.pageFlag === 2) {
+        this.getStuByGender()
+      }
     },
     pageNoChange (val) {
       this.pageList.pageNo = val
-      this.stuList()
+      if (this.pageFlag === 0) {
+        this.stuList()
+      } else if (this.pageFlag === 1) {
+        this.getStuById()
+      } else if (this.pageFlag === 2) {
+        this.getStuByGender()
+      }
     }
   }
 }

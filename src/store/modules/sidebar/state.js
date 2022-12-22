@@ -147,21 +147,18 @@ export default {
               path: '/main/College/addManager',
               icon: 'suncaper-menu-unfold',
               title: '添加辅导员'
+            },
+            {
+              path: '/main/College/modifyManagerInfo',
+              icon: 'suncaper-menu-unfold',
+              title: '辅导员信息维护'
             }
           ]
         },
         {
-          path: '/main/College',
+          path: '/main/College/exportFile',
           icon: 'suncaper-menu-unfold',
-          title: '数据管理',
-          group: 'book',
-          children: [
-            {
-              path: '/main/College/exportFile',
-              icon: 'suncaper-menu-unfold',
-              title: '导出文件'
-            }
-          ]
+          title: '数据导出'
         }
       ]
     },

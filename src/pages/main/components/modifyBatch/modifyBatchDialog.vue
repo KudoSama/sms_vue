@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     modifyBatch () {
-      this.$confirm('请问修改该批次信息吗？', '提示', {type: 'warning'})
+      this.$confirm('是否修改该批次信息？', '提示', {type: 'warning'})
         .then(_ => {
           let val = {
             batchId: this.batchRecord.batchId,

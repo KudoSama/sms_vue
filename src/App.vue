@@ -26,7 +26,8 @@ export default {
         history.go(1)
       }
     }
+  },
+  methods: {
   }
-
 }
 </script>

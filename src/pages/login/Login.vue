@@ -35,9 +35,6 @@
 
 <script>
 import {Message} from 'element-ui'
-import md5 from 'js-md5'
-import base64 from 'base64-js'
-import store from '../../store'
 import {Base64} from 'js-base64'
 import SchoolResetDialog from '../main/components/schoolReset/schoolResetDialog'
 
@@ -64,12 +61,29 @@ export default {
       value: ''
     }
   },
-  // mounted () {
-  //   window.location.reload()
-  // },
+  created () {
+    this.enterLogin()
+  },
+  mounted () {
+    if (location.href.indexOf('login') === -1) {
+      location.href = location.href + 'login'
+      location.reload()
+    }
+  },
   methods: {
     schoolReset () {
       this.$refs.schoolReset.show()
+    },
+    enterLogin () {
+      this.$axios.post('/api/user/refresh')
+      document.onkeydown = (e) => {
+        // console.log(e)
+        e = window.event || e
+        if ((this.$route.path === '/' || this.$route.path === '/login') &&
+            (e.code === 'Enter' || e.code === 'enter' || e.code === 'NumpadEnter')) {
+          this.login()
+        }
+      }
     },
     login () {
       let user = {

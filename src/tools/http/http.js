@@ -51,7 +51,7 @@ function checkCode (res, errMsg) {
         errMsg ? Message.error(errMsg) : Message.error(res.data.message || '未知异常')
     }
     this.$axios.post('/api/user/refresh')
-    this.$router.push('/login')
+    this.$router.push('/')
     this.$router.go(0)
   }
   return res.data

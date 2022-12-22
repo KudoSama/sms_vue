@@ -18,5 +18,10 @@ export default new Vuex.Store({
     permission,
     routecache
   },
+  mutations: {
+    // RESET_STATE: (state) => {
+    //   Object.assign(state, getDefaultState())
+    // }
+  },
   strict: debug
 })

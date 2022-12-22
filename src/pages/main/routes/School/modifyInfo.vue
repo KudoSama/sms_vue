@@ -40,7 +40,6 @@
 <script>
 import Vue from 'vue'
 import {Base64} from 'js-base64'
-import {Message} from 'element-ui'
 
 export default {
   name: 'modifyInfo',
@@ -75,7 +74,7 @@ export default {
       if (this.emailNum === null || this.emailNum === '') {
         Vue.prototype.$message.error('请输入邮箱验证码')
       } else {
-        this.$confirm('请问修改该账号信息吗？', '提示', {type: 'warning'})
+        this.$confirm('是否修改该账号信息？', '提示', {type: 'warning'})
           .then(_ => {
             // 如果输入框先输入再删除则会将null变为空串，这里无需针对密码修改
             if ((this.school.schPassword === null || this.school.schPassword === '') &&

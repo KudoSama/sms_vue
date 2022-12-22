@@ -17,14 +17,12 @@
             <br><br><br><br><br><br><br><br><br><br><br><br>
             <el-form-item>
                 <el-button type="primary" @click="addManager">立即创建</el-button>
-                <el-button>取消</el-button>
             </el-form-item>
         </el-form>
     </div>
 </template>
 
 <script>
-import md5 from 'js-md5'
 import Vue from 'vue'
 export default {
   name: 'addManager',

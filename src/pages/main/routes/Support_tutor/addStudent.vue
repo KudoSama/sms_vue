@@ -1,6 +1,4 @@
-
-<template xmlns:el-col="http://www.w3.org/1999/html">
-<!--    stuId, stuName, gender, enDate（时间戳, classId, stuPassword-->
+<template>
     <div>
         <h1 align="center">添加学生</h1>
         <el-form ref="form" :model="form" label-width="100px">
@@ -37,7 +35,6 @@
 </template>
 <!--    stuId, stuName, gender, enDate（时间戳, classId, stuPassword-->
 <script>
-import md5 from 'js-md5'
 import Vue from 'vue'
 export default {
   name: 'addStudent',

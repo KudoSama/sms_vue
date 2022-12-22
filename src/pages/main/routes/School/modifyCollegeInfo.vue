@@ -51,7 +51,7 @@ export default {
       })
     },
     resetPassword (data) {
-      this.$confirm('请问重置该学院账号的登录密码吗？', '提示', {type: 'warning'})
+      this.$confirm('是否重置该学院账号的登录密码？', '提示', {type: 'warning'})
         .then(_ => {
           let college = {colId: data.colId, colName: data.colName}
           this.$axios.post('/api/college/resetPassword', college).then(res => {

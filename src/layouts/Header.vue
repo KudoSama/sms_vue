@@ -45,7 +45,7 @@ export default {
       getSidebarTheme: 'sidebar/getSidebarTheme'
     }),
     roleName () {
-      console.info(this.getRoleName(this.userType))
+      // console.info(this.getRoleName(this.userType))
       return this.getRoleName(this.userType)
     },
     sidebarBackgroundColor () {
@@ -68,10 +68,11 @@ export default {
       this.$confirm('即将退出登录, 是否继续?', '提示', {
         type: 'warning'
       }).then(() => {
+        // this.$store
         this.$axios.post('/api/user/refresh')
-        this.$router.push('/login')
-        this.$router.replace({path: '/login'})
-        location.reload()
+        this.$router.push('/')
+        this.$router.replace({path: '/'})
+        // location.reload()
       }).catch(() => {
       })
     },
@@ -79,12 +80,9 @@ export default {
       this.$axios.post('/api/batch/getCurBatch').then(res => {
         // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
-          // Vue.prototype.$message.success(res.data.batchId)
-          // Vue.prototype.$message.success('当前批次：' + String(res.data.data.batchId))
           this.curBatch = String(res.data.data.batchId) + '批次'
         } else {
           this.curBatch = res.data.message
-          // Vue.prototype.$message.error(res.data.message)
         }
       })
     }

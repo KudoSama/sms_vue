@@ -4,15 +4,17 @@ const loginPage = [
     name: 'login',
     component: () =>
       import(/* webpackChunkName: "Login" */ '../pages/login/Login')
+  },
+  {
+    path: '/',
+    name: 'login',
+    meta: {allowBack: false},
+    component: () =>
+      import(/* webpackChunkName: "Login" */ '../pages/login/Login')
   }
 ]
 
 const mainPage = [
-  {
-    path: '/',
-    redirect: '/login',
-    meta: {allowBack: false}
-  },
   {
     path: '/main',
     name: 'main',
@@ -153,6 +155,14 @@ const mainPage = [
         component: () =>
           import(
             /* webpackChunkName: "First" */ '../pages/main/routes/College/colApprove'
+          )
+      },
+      {
+        path: 'College/modifyManagerInfo',
+        name: 'College_modifyManagerInfo',
+        component: () =>
+          import(
+            /* webpackChunkName: "First" */ '../pages/main/routes/College/modifyManagerInfo'
           )
       },
       {

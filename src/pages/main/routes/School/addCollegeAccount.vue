@@ -25,7 +25,7 @@
 
 <script>
 import Vue from 'vue'
-import md5 from 'js-md5'
+
 export default {
   name: 'addCollegeAccount',
   data () {

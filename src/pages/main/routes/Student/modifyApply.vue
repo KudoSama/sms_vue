@@ -106,7 +106,7 @@ export default {
       })
     },
     deleteApply (id) {
-      this.$confirm('请问删除该条申请记录吗？', '提示', {type: 'warning'})
+      this.$confirm('是否删除该条申请记录？', '提示', {type: 'warning'})
         .then(_ => {
           let val = {id: id}
           this.$axios.post('/api/stuApply/deleteApply', val).then(res => {

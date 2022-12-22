@@ -82,9 +82,9 @@ export default {
       this.$refs.modifyBatchDialog.show(batchRecord)
     },
     deleteBatch (batchRecord) {
-      this.$confirm('该操作将清空衣物以及学生申请记录。确认删除该批次吗？', '提示', {type: 'warning'})
+      this.$confirm('该操作将清空衣物以及学生申请记录。是否删除该批次？', '提示', {type: 'warning'})
         .then(_ => {
-          this.$confirm('再次确认删除该批次吗？', '提示', {type: 'warning'})
+          this.$confirm('再次确认是否删除该批次？', '提示', {type: 'warning'})
             .then(_ => {
               let val = {
                 batchId: batchRecord.batchId,

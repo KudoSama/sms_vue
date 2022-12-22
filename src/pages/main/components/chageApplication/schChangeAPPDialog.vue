@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     agreeSingle () {
-      this.$confirm('请问修改该申请记录吗？', '提示', {type: 'warning'})
+      this.$confirm('是否修改该申请记录？', '提示', {type: 'warning'})
         .then(_ => {
           let val = {
             id: this.applyrecords.id,

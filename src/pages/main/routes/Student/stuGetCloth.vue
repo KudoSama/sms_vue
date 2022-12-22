@@ -28,17 +28,13 @@
               </div>
             </template>
           </el-table-column>
-            <el-table-column
-                    prop="batchId"
-                    label="批次号">
-            </el-table-column>
           <el-table-column
               prop="clothImg"
               label="展示（点击可放大）">
             <template slot-scope="scope">
               <div class="block">
                 <span class="demonstration"></span>
-                <el-carousel trigger="click" :interval="3000" type="card" height="70px">
+                <el-carousel indicator-position="outside" trigger="click" :interval="3000"  height="100px">
                   <el-carousel-item v-for="item in clothimglist.get(scope.row.clothId)" :key='item'>
                     <el-image :src="item"
                               :preview-src-list="clothimglist.get(scope.row.clothId)"></el-image>
@@ -70,7 +66,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import StuApply from '../../components/application/stuApply'
 
 export default {
