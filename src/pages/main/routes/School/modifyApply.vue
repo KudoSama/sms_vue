@@ -3,6 +3,7 @@
         <h1 align="center">修改学生申请</h1>
         <el-table
                 :data="applistNot"
+                height="550"
                 border
                 style="width: 100%">
             <el-table-column
@@ -41,7 +42,6 @@
               width="120">
           </el-table-column>
             <el-table-column
-                    fixed="right"
                     label="操作">
                 <template slot-scope="scope">
                     <el-button type="primary" size="mini" @click="showDetail(scope.row)">修改</el-button>

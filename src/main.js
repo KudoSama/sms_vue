@@ -14,6 +14,7 @@ import '@/assets/iconfont-default'
 import router from './router/'
 import store from './store/'
 import MD5 from 'js-md5'
+import 'default-passive-events'
 
 Vue.prototype.$md5 = MD5
 
@@ -24,8 +25,8 @@ var axios = require('axios')
 // 全局注册，之后可在其他组件中通过 this.$axios 发送数据
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
-Vue.config.productionTip = false
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,

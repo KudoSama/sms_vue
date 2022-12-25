@@ -4,6 +4,7 @@
     <el-button type="success" @click="agreeByBatch" v-if="ids.length > 0">批量通过</el-button>
     <el-table
             :data="applistNot"
+            height="550"
             border
             style="width: 100%"
             @selection-change="handleSelectionChange">
@@ -12,7 +13,6 @@
                 width="55">
         </el-table-column>
         <el-table-column
-                fixed
                 prop="id"
                 label="编号"
                 width="150">
@@ -44,7 +44,6 @@
                 width="120">
         </el-table-column>
         <el-table-column
-                fixed="right"
                 label="操作">
             <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="showDetail(scope.row)">详情</el-button>

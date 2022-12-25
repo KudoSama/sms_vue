@@ -1,12 +1,12 @@
 <template>
     <div>
         <h1 align="center">查询衣物</h1>
-        <h2>请输入性别</h2>
         <el-input style="width: 200px" v-model="input"  placeholder="请输入性别"></el-input>
       <el-button type="primary" @click="clothList">查询</el-button>
         <br>
         <h3>查询结果</h3>
         <el-table
+            height="550"
             border
             stripe
             :data="clotlist"

@@ -2,11 +2,11 @@
     <div>
         <h1 align="center">修改申请</h1>
         <el-table
+            height="550"
                 :data="appListNot"
                 border
                 style="width: 100%">
             <el-table-column
-                    fixed
                     prop="id"
                     label="记录编号"
                     width="150">
@@ -37,7 +37,6 @@
                     width="120">
             </el-table-column>
             <el-table-column
-                    fixed="right"
                     label="操作">
                 <template slot-scope="scope">
                     <el-button type="primary" size="medium" @click="showDetail(scope.row)">修 改</el-button>

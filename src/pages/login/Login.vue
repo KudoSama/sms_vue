@@ -1,6 +1,7 @@
 <template>
     <div class="loginBody" >
-        <div class="loginData" ><el-card class="box-card"></el-card>
+      <el-card class="box-card"></el-card>
+        <div class="loginData" >
             <div class="loginText" style="width:600px">
                 <h2>寒衣补助综合管理系统</h2>
             </div>
@@ -65,10 +66,6 @@ export default {
     this.enterLogin()
   },
   mounted () {
-    if (location.href.indexOf('login') === -1) {
-      location.href = location.href + 'login'
-      location.reload()
-    }
   },
   methods: {
     schoolReset () {
@@ -155,7 +152,7 @@ export default {
         text-align: center;
         font-size: 30px;
         font-weight: bolder;
-        color: burlywood;
+        color: wheat;
         text-shadow: 2px 2px 4px #000000;
     }
 
@@ -167,7 +164,6 @@ export default {
         top: 45%;
         left: 50%;
         transform: translate(-50%, -50%);
-
         width: auto;
         height: auto;
     }
@@ -178,11 +174,13 @@ export default {
     }
 
     .box-card {
-      height: 100%;
-      width: 100%;
+      top: 40%;
+      left: 50%;
+      height: 50%;
+      width: 50%;
       position: absolute;
       padding-bottom: 20px;
-      background-color: rgba(255,255,255,0.5);//设置透明度
+      background-color: rgba(255,255,255,0.5);
       transform: translate(-50%, -50%);
     }
 

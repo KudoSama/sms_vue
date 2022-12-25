@@ -38,8 +38,9 @@ router.beforeEach((to, from, next) => {
   if (whiteList.indexOf(to.name) > -1 || whiteList.indexOf(to.path) > -1) { // 目的地是否在白名单里？
     next()
   } else if (!store.getters['user/getUserId']) { // 从缓存里拿userID
-    console.info(store.getters['user/getUserId'])
+    // console.info(store.getters['user/getUserId'])
     store.dispatch('user/fetchUserInfo').then(res => {
+      // console.info(res)
       if (res.status) {
         // 权限校验
         permission(store, routes, to, next)

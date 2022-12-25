@@ -1,9 +1,8 @@
 <template>
     <div>
         <h1 align="center">可申请衣物列表</h1>
-      <br>
-      <br>
         <el-table
+            height="550"
                 :data="clothlist"
                 style="width: 100%"
                 border>
@@ -44,7 +43,6 @@
             </template>
           </el-table-column>
           <el-table-column
-              fixed="right"
               label="操作">
             <template slot-scope="scope">
               <el-button type="primary" size="mini" @click="showDetail(scope.row)">申请该衣物</el-button>

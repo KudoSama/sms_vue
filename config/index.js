@@ -3,34 +3,46 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const fs = require('fs')
 
 module.exports = {
+  productionSourceMap: false,
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: { // 配置代理，下面是个例子
       '/api': {
-        target: 'http://localhost:9000',
+        target: 'https://localhost:9000',
         changeOrigin: true,
+        secure: false,
         pathRewrite: {
           "^/api": "/api"
+        },
+        header: {
+          Referer: 'https://localhost:9000'
         }
       },
       '/image': {
-        target: 'http://localhost:9000',
+        target: 'https://localhost:9000',
         changeOrigin: true,
+        secure: false,
         pathRewrite: {
           "^/image": "/image"
+        },
+        header: {
+          Referer: 'https://localhost:9000'
         }
-      }
+      },
     },
-
     // Various Dev Server settings
     // host: 'localhost', // can be overwritten by process.env.HOST
-    host: 'localhost', // can be overwritten by process.env.H
-    port: 80, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    https: true,
+    host: '0.0.0.0', // can be overwritten by process.env.H
+    port: 443, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

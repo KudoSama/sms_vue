@@ -1,7 +1,8 @@
 <template>
     <div>
-    <h1 align="center">申请记录审核历史</h1>
+    <h1 align="center">审核历史</h1>
     <el-table
+        height="550"
             :data="applistNot"
             border
             stripe
@@ -11,7 +12,6 @@
                 width="55">
         </el-table-column>
         <el-table-column
-                fixed
                 prop="id"
                 label="编号"
                 width="150">
@@ -43,7 +43,6 @@
                 width="120">
         </el-table-column>
         <el-table-column
-                fixed="right"
                 label="操作">
             <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="showDetail(scope.row)">详情</el-button>

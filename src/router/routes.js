@@ -2,6 +2,7 @@ const loginPage = [
   {
     path: '/login',
     name: 'login',
+    meta: {allowBack: false},
     component: () =>
       import(/* webpackChunkName: "Login" */ '../pages/login/Login')
   },

@@ -7,41 +7,35 @@
 </template>
 
 <script>
+import {exportCheckState, exportResult} from '@api/api'
+
 export default {
   name: 'exportFile',
   methods: {
     getCheckState () {
-      this.$axios.post('/api/stuApply/exportState', { responseType: 'blob' }, {
-        // 定义类型
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        responseType: 'blob'
-      }
-      ).then(res => {
-        const url = window.URL.createObjectURL(new Blob([res.data]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', 'exportState.xls')
-        document.body.appendChild(link)
-        link.click()
+      exportCheckState().then(res => {
+        let blob = new Blob([res])
+        let url = window.URL.createObjectURL(blob)
+        let elink = document.createElement('a')
+        elink.download = '审核状态.xls'
+        elink.style.display = 'none'
+        elink.href = url
+        document.body.appendChild(elink)
+        elink.click()
+        document.body.removeChild(elink)
       })
     },
     getresult () {
-      this.$axios.post('/api/stuApply/exportResult', { responseType: 'blob' }, {
-        // 定义类型
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        responseType: 'blob'
-      }
-      ).then(res => {
-        const url = window.URL.createObjectURL(new Blob([res.data]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', 'exportResult.xls')
-        document.body.appendChild(link)
-        link.click()
+      exportResult().then(res => {
+        let blob = new Blob([res])
+        let url = window.URL.createObjectURL(blob)
+        let elink = document.createElement('a')
+        elink.download = '统计结果.xls'
+        elink.style.display = 'none'
+        elink.href = url
+        document.body.appendChild(elink)
+        elink.click()
+        document.body.removeChild(elink)
       })
     }
   }

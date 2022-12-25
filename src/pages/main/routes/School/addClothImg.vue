@@ -2,7 +2,6 @@
     <div>
         <h1 align="center">上传衣物图片</h1>
         <div>
-            <br>
           <h3>请输入要插入图片的衣物id：</h3>
           <el-input v-model="clothId"
                     style="width: 200px"

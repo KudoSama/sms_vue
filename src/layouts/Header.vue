@@ -70,9 +70,9 @@ export default {
       }).then(() => {
         // this.$store
         this.$axios.post('/api/user/refresh')
-        this.$router.push('/')
-        this.$router.replace({path: '/'})
-        // location.reload()
+        this.$router.push('/login').then(() => {
+          window.location.reload()
+        })
       }).catch(() => {
       })
     },

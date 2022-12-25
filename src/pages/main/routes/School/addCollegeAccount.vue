@@ -14,7 +14,7 @@
                 </el-form-item>
             </el-col>
 
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br>
 
             <el-form-item>
                 <el-button type="primary" @click="addCollegeAccount">立即创建</el-button>

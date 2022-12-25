@@ -2,6 +2,7 @@
     <div>
         <h1 align="center">当前批次衣物</h1>
         <el-table
+            height="550"
             border
             stripe
             :data="clotlist"

@@ -9,8 +9,31 @@
 
 <script>
 import { mapState } from 'vuex'
+import Vue from 'vue'
+
 export default {
   name: 'App',
+  created () {
+    window.addEventListener(
+      'mousewheel',
+      function (event) {
+        if (event.ctrlKey === true || event.metaKey) {
+          event.preventDefault()
+        }
+      },
+      { passive: false }
+    )
+    // firefox
+    window.addEventListener(
+      'DOMMouseScroll',
+      function (event) {
+        if (event.ctrlKey === true || event.metaKey) {
+          event.preventDefault()
+        }
+      },
+      { passive: false }
+    )
+  },
   data () {
     return {
     }
@@ -26,6 +49,7 @@ export default {
         history.go(1)
       }
     }
+    Vue.config.productionTip = false
   },
   methods: {
   }
