@@ -159,6 +159,14 @@ const mainPage = [
           )
       },
       {
+        path: 'College/modifyInfo',
+        name: 'college_modifyInfo',
+        component: () =>
+          import(
+            /* webpackChunkName: "Second" */ '../pages/main/routes/College/modifyInfo'
+          )
+      },
+      {
         path: 'College/modifyManagerInfo',
         name: 'College_modifyManagerInfo',
         component: () =>

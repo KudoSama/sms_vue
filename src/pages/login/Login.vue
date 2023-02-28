@@ -31,6 +31,21 @@
             </div>
         </div>
       <school-reset-dialog ref="schoolReset"></school-reset-dialog>
+      <div style="font-weight:700;position:fixed;text-align:center;bottom:0;margin:0 auto;width:100%;color: black">
+        <a
+            target="_blank"
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202001387"
+            style="display: inline-block">
+            <img :src="rightIconSrc"/>
+            <p style="margin: 0 0 0 5px; color:black;display: inline-block">川公网安备 51012202001387号</p>
+        </a>
+        <a
+            target="_blank"
+            style="color: black"
+            href="https://beian.miit.gov.cn/">琼ICP备2022020863号-1
+        </a>
+        @2022 kudosama.cn 版权所有
+      </div>
     </div>
 </template>
 
@@ -38,12 +53,14 @@
 import {Message} from 'element-ui'
 import {Base64} from 'js-base64'
 import SchoolResetDialog from '../main/components/schoolReset/schoolResetDialog'
+import rightIcon from '@/assets/images/rightIcon.png'
 
 export default {
   name: 'Login',
   components: {SchoolResetDialog},
   data: function () {
     return {
+      rightIconSrc: rightIcon,
       id: '',
       password: '',
       options: [{

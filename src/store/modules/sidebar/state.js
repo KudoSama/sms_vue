@@ -86,7 +86,7 @@ export default {
         {
           path: '/main/School',
           icon: 'suncaper-menu-unfold',
-          title: '用户管理',
+          title: '学院管理',
           group: 'second',
           children: [
             {
@@ -140,7 +140,7 @@ export default {
         {
           path: '/main/College',
           icon: 'suncaper-menu-unfold',
-          title: '用户管理',
+          title: '辅导员管理',
           group: 'college',
           children: [
             {
@@ -159,6 +159,11 @@ export default {
           path: '/main/College/exportFile',
           icon: 'suncaper-menu-unfold',
           title: '数据导出'
+        },
+        {
+          path: '/main/College/modifyInfo',
+          icon: 'suncaper-menu-unfold',
+          title: '账号信息维护'
         }
       ]
     },

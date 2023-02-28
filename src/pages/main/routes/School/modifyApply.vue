@@ -3,7 +3,6 @@
         <h1 align="center">修改学生申请</h1>
         <el-table
                 :data="applistNot"
-                height="550"
                 border
                 style="width: 100%">
             <el-table-column

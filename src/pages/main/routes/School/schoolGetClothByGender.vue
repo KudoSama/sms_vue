@@ -1,12 +1,11 @@
 <template>
     <div>
         <h1 align="center">查询衣物</h1>
-        <el-input style="width: 200px" v-model="input"  placeholder="请输入性别"></el-input>
+        <el-input style="width: 200px" v-model="input"  placeholder="请输入性别（男/女）"></el-input>
       <el-button type="primary" @click="clothList">查询</el-button>
         <br>
         <h3>查询结果</h3>
         <el-table
-            height="550"
             border
             stripe
             :data="clotlist"
@@ -55,12 +54,17 @@ export default {
         pageNo: 1,
         pageSize: 10,
         total: 0
-      }
+      },
+      flag: ''
     }
   },
   methods: {
 
     clothList () {
+      if (this.flag !== this.input) {
+        this.flag = this.input
+        this.pageList = {pageNo: 1, pageSize: 10, total: 0}
+      }
       let data = {gender: this.input, pageList: this.pageList}
       this.$axios.post('/api/cloth/schoolGetClothByGender', data).then(res => {
         // console.info(res)

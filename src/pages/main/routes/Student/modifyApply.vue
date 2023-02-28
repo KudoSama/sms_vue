@@ -2,7 +2,6 @@
     <div>
         <h1 align="center">修改申请</h1>
         <el-table
-            height="550"
                 :data="appListNot"
                 border
                 style="width: 100%">

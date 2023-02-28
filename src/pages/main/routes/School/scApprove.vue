@@ -4,7 +4,6 @@
     <el-button type="success" @click="agreeByBatch" v-if="ids.length > 0">批量通过</el-button>
     <el-table
             :data="applistNot"
-            height="550"
             border
             style="width: 100%"
             @selection-change="handleSelectionChange">

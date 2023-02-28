@@ -2,7 +2,6 @@
     <div>
         <h1 align="center">可申请衣物列表</h1>
         <el-table
-            height="550"
                 :data="clothlist"
                 style="width: 100%"
                 border>

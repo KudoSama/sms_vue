@@ -13,6 +13,7 @@
 import {mapGetters} from 'vuex'
 import Layout from '@/layouts/Layout'
 import logo from '@/assets/images/cloth.png'
+
 export default {
   name: 'Main',
   data () {

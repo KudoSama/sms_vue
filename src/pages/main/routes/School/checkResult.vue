@@ -2,7 +2,6 @@
     <div>
     <h1 align="center">审核历史</h1>
     <el-table
-        height="550"
             :data="applistNot"
             border
             stripe
