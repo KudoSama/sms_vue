@@ -89,7 +89,7 @@ export default {
     clothList () {
       let val = {}
       this.$axios.post('/api/cloth/getClothByGender', this.pageList).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         // console.info(res)
         // Vue.prototype.$message.success(res.data.message)
         if (res.data.status === false) {
