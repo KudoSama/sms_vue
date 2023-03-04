@@ -78,13 +78,7 @@ export default {
   data () {
     return {
       clothlist: [],
-      radio: '1',
-      input: '',
-      pageList: {
-        pageNo: 1,
-        pageSize: 10,
-        total: 0
-      },
+      pageList: {pageNo: 1, pageSize: 10, total: 0},
       clothsizelist: [],
       clothimglist: [],
       clothImg: ''
