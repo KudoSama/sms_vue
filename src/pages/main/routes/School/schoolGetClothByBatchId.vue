@@ -45,10 +45,13 @@
               </div>
             </template>
           </el-table-column>
-            <el-table-column
-                    prop="batchId"
-                    label="批次号">
-            </el-table-column>
+          <el-table-column
+              label="操作"
+              width="auto">
+            <template slot-scope="scope">
+              <el-button type="primary" size="mini" @click="showDetail(scope.row)">添加尺码</el-button>
+            </template>
+          </el-table-column>
         </el-table>
       <el-pagination
           background
@@ -60,12 +63,15 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      <add-cloth-size-dialog ref="addClothSizeDialog"></add-cloth-size-dialog>
     </div>
 </template>
 
 <script>
+import AddClothSizeDialog from '../../components/addClothSize/addClothSizeDialog'
 export default {
   name: 'schoolGetClothByBatchId',
+  components: {AddClothSizeDialog},
   created () {
     this.clothList()
   },
@@ -85,7 +91,6 @@ export default {
     }
   },
   methods: {
-
     clothList () {
       let val = {}
       this.$axios.post('/api/cloth/getClothByBatchId', this.pageList).then(res => {
@@ -119,6 +124,9 @@ export default {
     pageNoChange (val) {
       this.pageList.pageNo = val
       this.clothList()
+    },
+    showDetail (clothRecord) {
+      this.$refs.addClothSizeDialog.show(clothRecord)
     }
   }
 }

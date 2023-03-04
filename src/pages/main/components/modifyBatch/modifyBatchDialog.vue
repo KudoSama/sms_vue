@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-dialog title="学生申请"
+    <el-dialog title="修改批次号"
                append-to-body
                :visible.sync="dialogVisible"
                width="30%"
                :before-close="handleClose">
-      <el-form ref="form" :model="form" label-width="100px">
+      <el-form ref="batchRecord" :model="batchRecord" label-width="100px">
         <el-col :span="10">
           <el-form-item label="批次号">
             <el-input v-model="batchRecord.batchId"

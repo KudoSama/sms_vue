@@ -38,11 +38,6 @@ export default {
               group: 'chlothByid'
             },
             {
-              path: '/main/School/addClothBySize',
-              icon: 'suncaper-menu-unfold',
-              title: '添加衣物尺码'
-            },
-            {
               path: '/main/School/addImg',
               icon: 'suncaper-menu-unfold',
               title: '添加衣物图片'
