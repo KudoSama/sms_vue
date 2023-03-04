@@ -1,7 +1,7 @@
 <template>
     <div>
-
         <el-dialog
+                append-to-body
                 title="提示"
                 :visible.sync="dialogVisible"
                 width="30%"

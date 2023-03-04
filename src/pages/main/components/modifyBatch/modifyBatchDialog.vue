@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-dialog title="学生申请"
+               append-to-body
                :visible.sync="dialogVisible"
                width="30%"
                :before-close="handleClose">

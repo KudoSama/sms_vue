@@ -2,11 +2,19 @@
   <div>
     <el-dialog
         title="重置密码"
+        append-to-body
         :visible.sync="dialogVisible"
         width="30%"
         :modal-append-to-body='false'
         :before-close="handleClose">
       <el-form ref="form" label-width="auto">
+        <el-form-item label="账号">
+          <el-input v-model.number="schId"
+                    ref="input"
+                    placeholder="请输入账号"
+                    oninput="value=value.replace(/[^0-9]/g,'')"
+                    style="width: 200px"></el-input>
+        </el-form-item>
         <el-form-item label="邮箱验证码">
           <el-input v-model.number="inNum"
                     ref="input"
@@ -17,7 +25,7 @@
           <el-button @click="setEmail">发送邮件</el-button>
         </el-form-item>
       </el-form>
-      <h3 align="center">如邮箱已更换，请联系系统管理员重置邮箱</h3>
+      <h3 align="center">如邮箱已更换，请联系数据库管理员重置邮箱</h3>
       <span slot="footer" class="dialog-footer">
     <el-button @click="handleClose">取 消</el-button>
     <el-button type="primary" @click="resetPassword">确 定</el-button>
@@ -33,7 +41,8 @@ export default {
   data () {
     return {
       dialogVisible: false,
-      inNum: null
+      inNum: null,
+      schId: ''
     }
   },
   methods: {
@@ -41,28 +50,40 @@ export default {
       this.dialogVisible = true
     },
     setEmail () {
-      Vue.prototype.$message.warning('稍有延迟，请耐心等待发送成功提示出现，请勿连点发送按钮')
-      this.$axios.post('/api/school/setEmail').then(res => {
-        Vue.prototype.$message.success('发送成功，请注意查收')
-      })
-    },
-    UpNumber (e) {
-      e.target.value = e.target.value.replace(/[^\d]/g, '')
+      if (this.schId === '' || this.schId === null) {
+        Vue.prototype.$message.error('请输入账号')
+      } else {
+        let val = {schId: this.schId}
+        this.$axios.post('/api/school/getSchoolById', val).then(res => {
+          if (res.data.status === true) {
+            Vue.prototype.$message.warning('稍有延迟，请耐心等待发送成功提示出现，请勿连点发送按钮')
+            this.$axios.post('/api/school/setEmail').then(res => {
+              Vue.prototype.$message.success('发送成功，请注意查收')
+            })
+          } else {
+            Vue.prototype.$message.error('账号输入错误，请重新输入')
+          }
+        })
+      }
     },
     resetPassword () {
       this.$confirm('确认重置密码？')
         .then(_ => {
-          let val = {inNum: this.inNum}
-          this.$axios.post('/api/school/resetPassword', val).then(res => {
-            // console.info(res)
-            if (res.data !== null && res.data.status === true) {
-              Vue.prototype.$message.success(res.data.message)
-              this.dialogVisible = false
-              this.$refs.input.clear()
-            } else {
-              Vue.prototype.$message.error(res.data.message)
-            }
-          })
+          if (this.inNum === null || this.inNum === '') {
+            Vue.prototype.$message.error('请输入验证码')
+          } else {
+            let val = {inNum: this.inNum}
+            this.$axios.post('/api/school/resetPassword', val).then(res => {
+              // console.info(res)
+              if (res.data !== null && res.data.status === true) {
+                Vue.prototype.$message.success(res.data.message)
+                this.dialogVisible = false
+                this.$refs.input.clear()
+              } else {
+                Vue.prototype.$message.error(res.data.message)
+              }
+            })
+          }
         })
         .catch(_ => {})
     },

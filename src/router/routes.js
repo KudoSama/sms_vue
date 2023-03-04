@@ -207,6 +207,14 @@ const mainPage = [
             )
       },
       {
+        path: 'Student/modifyInfo',
+        name: 'Student_modifyInfo',
+        component: () =>
+          import(
+            /* webpackChunkName: "Second" */ '../pages/main/routes/Student/modifyInfo'
+          )
+      },
+      {
         path: 'Support_Tutor/stApprove',
         name: 'Support_stApprove',
         component: () =>
@@ -244,6 +252,14 @@ const mainPage = [
         component: () =>
           import(
             /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/exportFile'
+          )
+      },
+      {
+        path: 'Support_Tutor/modifyInfo',
+        name: 'Support_Tutor_modifyInfo',
+        component: () =>
+          import(
+            /* webpackChunkName: "Second" */ '../pages/main/routes/Support_Tutor/modifyInfo'
           )
       }
     ]

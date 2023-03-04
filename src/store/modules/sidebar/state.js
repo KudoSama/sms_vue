@@ -214,6 +214,11 @@ export default {
           path: '/main/Support_Tutor/exportFile',
           icon: 'suncaper-menu-unfold',
           title: '数据导出'
+        },
+        {
+          path: '/main/Support_Tutor/modifyInfo',
+          icon: 'suncaper-menu-unfold',
+          title: '账号信息维护'
         }
       ]
     },
@@ -231,6 +236,11 @@ export default {
           path: '/main/Student/modifyApply',
           icon: 'suncaper-menu-unfold',
           title: '申请修改与删除'
+        },
+        {
+          path: '/main/student/modifyInfo',
+          icon: 'suncaper-menu-unfold',
+          title: '账号信息维护'
         }
       ]
     }

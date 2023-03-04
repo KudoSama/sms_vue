@@ -64,6 +64,7 @@
 
 <script>
 import StuApply from '../../components/application/stuApply'
+import Vue from 'vue'
 
 export default {
   name: 'stugetCloth',
@@ -88,15 +89,20 @@ export default {
     clothList () {
       let val = {}
       this.$axios.post('/api/cloth/getClothByGender', this.pageList).then(res => {
+        console.log(res.data)
         // console.info(res)
         // Vue.prototype.$message.success(res.data.message)
-        this.clothlist = res.data.data.records
-        this.clothimglist = new Map(Object.entries(res.data.otherData))
-        for (let i = 0; i < this.clothlist.length; i++) {
-          val[this.clothlist[i].clothId] = this.clothSizeList(this.clothlist[i].clothId)
+        if (res.data.status === false) {
+          Vue.prototype.$message.error(res.data.message)
+        } else {
+          this.clothlist = res.data.data.records
+          this.clothimglist = new Map(Object.entries(res.data.otherData))
+          for (let i = 0; i < this.clothlist.length; i++) {
+            val[this.clothlist[i].clothId] = this.clothSizeList(this.clothlist[i].clothId)
+          }
+          this.clothsizelist = val
+          this.pageList.total = res.data.data.total
         }
-        this.clothsizelist = val
-        this.pageList.total = res.data.data.total
       })
     },
     clothSizeList (clothId) {
