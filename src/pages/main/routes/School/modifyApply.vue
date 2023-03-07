@@ -44,6 +44,7 @@
                     label="操作">
                 <template slot-scope="scope">
                     <el-button type="primary" size="mini" @click="showDetail(scope.row)">修改</el-button>
+                  <el-button type="danger" size="mini" @click="deleteApply(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -95,6 +96,13 @@ export default {
         } else {
           Vue.prototype.$message.error(res.data.message)
         }
+      })
+    },
+    deleteApply (apply) {
+      this.$confirm('是否删除该申请记录？', '提示', {type: 'warning'}).then(_ => {
+        this.$axios.post('api/stuApply/deleteApply', {'id': apply.id}).then(res => {
+          Vue.prototype.$message.success(res.data.data)
+        })
       })
     },
     pageSizeChange (val) {

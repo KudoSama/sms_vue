@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="sidebar-logo" class="sidebar-logo" :style="{backgroundColor: theme === 'light' ? '#ffffff' : '#1f2c35'}">
+    <div style="cursor: pointer" id="sidebar-logo" class="sidebar-logo" :style="{backgroundColor: theme === 'light' ? '#ffffff' : '#1f2c35'}" @click="toIndex">
       <div class="sidebar-logo-png">
       <img :src="logo.src" :alt="logo.alt" />
       </div>
@@ -78,6 +78,9 @@ export default {
     }
   },
   methods: {
+    toIndex () {
+      this.$router.push('/main')
+    },
     getRoutesList () {
       let pathList = []
       this.findAllPath(this.sidebarList, pathList)
