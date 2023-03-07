@@ -30,8 +30,16 @@
             placeholder="请输入6位纯数字"
             oninput="value=value.replace(/[^0-9]/g,'')"
             maxlength="6"></el-input>
-        <el-button @click="setEmail" style="width: auto" type="primary">发送验证邮件</el-button>
-        <el-button @click="modifyInfo" style="width: auto" type="primary">提 交</el-button>
+        <el-button @click="setEmail"
+                   style="width: 125px"
+                   :disabled="disabled=!button_show"
+                   type="primary">
+          <span v-show="button_show">获取验证码</span>
+          <span v-show="!button_show" class="count">{{count}} s</span>
+        </el-button>
+        <el-button @click="modifyInfo"
+                   style="width: auto"
+                   type="primary">提 交</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -50,7 +58,10 @@ export default {
     return {
       school: {schId: '', schName: '', schPassword: ''},
       emailNum: null,
-      enPassword: ''
+      enPassword: '',
+      button_show: true,
+      count: '', // 初始化次数
+      timer: null
     }
   },
   methods: {
@@ -65,7 +76,21 @@ export default {
       })
     },
     setEmail () {
-      Vue.prototype.$message.warning('稍有延迟，请耐心等待发送成功提示出现，请勿连点发送按钮')
+      Vue.prototype.$message.warning('稍有延迟，请耐心等待发送成功提示出现')
+      const TIME_COUNT = 60 // 更改倒计时时间
+      if (!this.timer) {
+        this.count = TIME_COUNT
+        this.button_show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= TIME_COUNT) {
+            this.count--
+          } else {
+            this.button_show = true
+            clearInterval(this.timer) // 清除定时器
+            this.timer = null
+          }
+        }, 1000)
+      }
       this.$axios.post('/api/school/setEmail').then(res => {
         Vue.prototype.$message.success('发送成功，请注意查收')
       })

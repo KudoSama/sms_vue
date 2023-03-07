@@ -207,51 +207,51 @@ const mainPage = [
           )
       },
       {
-        path: 'Support_Tutor/stApprove',
-        name: 'Support_stApprove',
+        path: 'Manager/manApprove',
+        name: 'Manager_manApprove',
         component: () =>
             import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/stApprove'
+              /* webpackChunkName: "First" */ '../pages/main/routes/Manager/manApprove'
             )
       },
       {
-        path: 'Support_Tutor/checkResult',
-        name: 'Support_checkResult',
+        path: 'Manager/checkResult',
+        name: 'Manager_checkResult',
         component: () =>
             import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/checkResult'
+              /* webpackChunkName: "First" */ '../pages/main/routes/Manager/checkResult'
             )
       },
       {
-        path: 'Support_Tutor/addStudent',
+        path: 'Manager/addStudent',
         name: 'addStudent',
         component: () =>
             import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/addStudent'
+              /* webpackChunkName: "First" */ '../pages/main/routes/Manager/addStudent'
             )
       },
       {
-        path: 'Support_Tutor/getStudentById',
+        path: 'Manager/getStudentById',
         name: 'addStudent',
         component: () =>
             import(
-              /* webpackChunkName: "First" */ '../pages/main/routes/Support_tutor/getStudentById'
+              /* webpackChunkName: "First" */ '../pages/main/routes/Manager/getStudentById'
             )
       },
       {
-        path: 'Support_Tutor/exportFile',
+        path: 'Manager/exportFile',
         name: 'AddCollegeAccount',
         component: () =>
           import(
-            /* webpackChunkName: "First" */ '../pages/main/routes/Support_Tutor/exportFile'
+            /* webpackChunkName: "First" */ '../pages/main/routes/Manager/exportFile'
           )
       },
       {
-        path: 'Support_Tutor/modifyInfo',
-        name: 'Support_Tutor_modifyInfo',
+        path: 'Manager/modifyInfo',
+        name: 'Manager_modifyInfo',
         component: () =>
           import(
-            /* webpackChunkName: "Second" */ '../pages/main/routes/Support_Tutor/modifyInfo'
+            /* webpackChunkName: "Second" */ '../pages/main/routes/Manager/modifyInfo'
           )
       }
     ]

@@ -168,18 +168,18 @@ export default {
           groupTitle: '辅导员'
         },
         {
-          path: '/main/Support_Tutor',
+          path: '/main/Manager',
           icon: 'suncaper-menu-unfold',
           title: '衣物申请审核',
           group: 'clothapply',
           children: [
             {
-              path: '/main/Support_Tutor/stApprove',
+              path: '/main/Manager/manApprove',
               icon: 'suncaper-menu-unfold',
               title: '待审核'
             },
             {
-              path: '/main/Support_Tutor/checkResult',
+              path: '/main/Manager/checkResult',
               icon: 'suncaper-menu-unfold',
               title: '审核记录'
             }
@@ -187,18 +187,18 @@ export default {
           ]
         },
         {
-          path: '/main/Support_Tutor',
+          path: '/main/Manager',
           icon: 'suncaper-menu-unfold',
           title: '学生管理',
           group: 'stuManage',
           children: [
             {
-              path: '/main/Support_Tutor/addStudent',
+              path: '/main/Manager/addStudent',
               icon: 'suncaper-menu-unfold',
               title: '添加学生'
             },
             {
-              path: '/main/Support_Tutor/getStudentById',
+              path: '/main/Manager/getStudentById',
               icon: 'suncaper-menu-unfold',
               title: '学生信息维护'
             }
@@ -206,12 +206,12 @@ export default {
           ]
         },
         {
-          path: '/main/Support_Tutor/exportFile',
+          path: '/main/Manager/exportFile',
           icon: 'suncaper-menu-unfold',
           title: '数据导出'
         },
         {
-          path: '/main/Support_Tutor/modifyInfo',
+          path: '/main/Manager/modifyInfo',
           icon: 'suncaper-menu-unfold',
           title: '账号信息维护'
         }

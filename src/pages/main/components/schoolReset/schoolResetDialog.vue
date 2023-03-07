@@ -66,6 +66,7 @@ export default {
         let val = {schId: this.schId}
         this.$axios.post('/api/school/getSchoolById', val).then(res => {
           if (res.data.status === true) {
+            Vue.prototype.$message.warning('稍有延迟，请耐心等待发送成功提示出现')
             const TIME_COUNT = 60 // 更改倒计时时间
             if (!this.timer) {
               this.count = TIME_COUNT
@@ -80,7 +81,6 @@ export default {
                 }
               }, 1000)
             }
-            Vue.prototype.$message.warning('稍有延迟，请耐心等待发送成功提示出现')
             this.$axios.post('/api/school/setEmail').then(res => {
               Vue.prototype.$message.success('发送成功，请注意查收')
             })

@@ -1,10 +1,17 @@
 <template>
-    <div>
-    <h1 align="center">审核历史</h1>
+<div>
+    <h1 align="center">申请记录审核</h1>
+    <el-button type="success" @click="agreeByBatch" v-if="ids.length > 0">批量通过</el-button>
     <el-table
             :data="applistNot"
             border
-            style="width: 100%">
+            stripe
+            style="width: 100%"
+            @selection-change="handleSelectionChange">
+        <el-table-column
+                type="selection"
+                width="55">
+        </el-table-column>
         <el-table-column
                 prop="id"
                 label="编号"
@@ -40,31 +47,36 @@
                 label="操作">
             <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="showDetail(scope.row)">详情</el-button>
+                <el-button @click="agreeSingle(scope.row)" type="success" size="mini">同意</el-button>
+                <el-button type="danger" size="mini" @click="refuseSingle(scope.row)">拒绝</el-button>
             </template>
         </el-table-column>
     </el-table>
-      <el-pagination
-          background
-          @size-change="pageSizeChange"
-          @current-change="pageNoChange"
-          :current-page="pageList.pageNo"
-          :page-sizes="[10, 20, 50, 100]"
-          :page-size="pageList.pageSize"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="pageList.total">
-      </el-pagination>
-    <application-record-dialog ref="applied"></application-record-dialog>
-    </div>
+  <el-pagination
+      background
+      @size-change="pageSizeChange"
+      @current-change="pageNoChange"
+      :current-page="pageList.pageNo"
+      :page-sizes="[10, 20, 50, 100]"
+      :page-size="pageList.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="pageList.total">
+  </el-pagination>
+    <application-record-dialog ref="stuApplyNot"></application-record-dialog>
+    <ref-reason-dialog ref="refReasondialog"></ref-reason-dialog>
+</div>
 </template>
 
 <script>
-import applicationRecordDialog from '../../components/application/applied'
+import applicationRecordDialog from '../../components/application/applicationRecordDialog'
+import refReasonDialog from '../../components/refReason/refReasonDialog'
 import moment from 'moment'
 import Vue from 'vue'
 export default {
-  name: 'stApprove',
+  name: 'manApprove',
   components: {
-    applicationRecordDialog
+    applicationRecordDialog,
+    refReasonDialog
   },
   created () {
     this.findNotExamineStuApply()
@@ -87,17 +99,22 @@ export default {
         // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
+          this.findNotExamineStuApply()
         } else {
           Vue.prototype.$message.error(res.data.data)
         }
       })
     },
-    aggreeSingle (row) {
+    handleSelectionChange (checkedrecords) {
+      this.ids = checkedrecords.map(applyRecords => applyRecords.id)
+    },
+    agreeSingle (row) {
       let val = [row.id]
       this.$axios.post('/api/stuApply/agreeBatch', val).then(res => {
         // console.info(res)
         if (res.data !== null && res.data.status === true) {
           Vue.prototype.$message.success(res.data.data)
+          this.findNotExamineStuApply()
         } else {
           Vue.prototype.$message.error(res.data.data)
         }
@@ -114,7 +131,7 @@ export default {
       return moment(date).format('YYYY-MM-DD HH:mm:ss')
     },
     findNotExamineStuApply () {
-      this.$axios.post('/api/stuApply/selectExaminedStuApply', this.pageList).then(res => {
+      this.$axios.post('/api/stuApply/selectNotExamineStuApply', this.pageList).then(res => {
         // console.info(res)
         this.applistNot = res.data.data.records
         this.pageList.total = res.data.data.total
@@ -130,11 +147,14 @@ export default {
     },
     showDetail (applyrecords) {
       // console.info(applyrecords)
-      this.$refs.applied.show(applyrecords)
+      this.$refs.stuApplyNot.show(applyrecords)
+    },
+    refuseSingle (applyrecords) {
+      this.$refs.refReasondialog.show(applyrecords)
     }
+
   }
 }
-
 </script>
 
 <style scoped>

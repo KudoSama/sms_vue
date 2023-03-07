@@ -216,8 +216,10 @@ export default {
         this.student = res.data.data
         if (this.student === null) {
           this.list = null
+          this.pageList.total = 0
         } else {
           this.list = [this.student]
+          this.pageList.total = 1
         }
       })
     },
