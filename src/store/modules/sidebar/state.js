@@ -8,71 +8,71 @@ export default {
         },
         {
           path: '/main/School/School',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '批次管理',
           group: 'batch',
           children: [
             {
               path: '/main/School/addBatch',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '添加批次',
               group: 'chlothBath'
             },
             {
               path: '/main/School/modifyBatch',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '修改批次'
             }
           ]
         },
         {
           path: '/main/School/School',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '衣物管理',
           group: 'clothadd',
           children: [
             {
               path: '/main/School/addClothById',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '添加衣物',
               group: 'chlothByid'
             },
             {
               path: '/main/School/addImg',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '添加衣物图片'
             },
             {
               path: '/main/School/schoolGetClothByBatchId',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '查询衣物（批次）'
             },
             {
               path: '/main/School/schoolGetClothByGender',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '查询衣物（性别）'
             }
           ]
         },
         {
           path: '/main/School/scApprove',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '申请管理',
           group: 'clothApply',
           children: [
             {
               path: '/main/School/scApprove',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '待审核'
             },
             {
               path: '/main/School/checkResult',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '审核记录'
             },
             {
               path: '/main/School/modifyApply',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '修改申请'
             }
 
@@ -80,30 +80,30 @@ export default {
         },
         {
           path: '/main/School',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '学院管理',
           group: 'second',
           children: [
             {
               path: '/main/School/addCollegeAccount',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '添加学院用户'
             },
             {
               path: '/main/School/modifyCollegeInfo',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '重置学院用户密码'
             }
           ]
         },
         {
           path: '/main/School/exportFile',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '导出数据'
         },
         {
           path: '/main/School/modifyInfo',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '账号信息维护'
         }
       ]
@@ -115,18 +115,18 @@ export default {
         },
         {
           path: '/main/College',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '申请审核',
           group: 'clothapply',
           children: [
             {
               path: '/main/College/colApprove',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '待审核'
             },
             {
               path: '/main/College/checkResult',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '审核记录'
             }
 
@@ -134,30 +134,30 @@ export default {
         },
         {
           path: '/main/College',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '辅导员管理',
           group: 'college',
           children: [
             {
               path: '/main/College/addManager',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '添加辅导员'
             },
             {
               path: '/main/College/modifyManagerInfo',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '辅导员信息维护'
             }
           ]
         },
         {
           path: '/main/College/exportFile',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '数据导出'
         },
         {
           path: '/main/College/modifyInfo',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '账号信息维护'
         }
       ]
@@ -169,18 +169,18 @@ export default {
         },
         {
           path: '/main/Manager',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '衣物申请审核',
           group: 'clothapply',
           children: [
             {
               path: '/main/Manager/manApprove',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '待审核'
             },
             {
               path: '/main/Manager/checkResult',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '审核记录'
             }
 
@@ -188,18 +188,18 @@ export default {
         },
         {
           path: '/main/Manager',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '学生管理',
           group: 'stuManage',
           children: [
             {
               path: '/main/Manager/addStudent',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '添加学生'
             },
             {
               path: '/main/Manager/getStudentById',
-              icon: 'suncaper-menu-unfold',
+              icon: 'wmj-menu-unfold',
               title: '学生信息维护'
             }
 
@@ -207,12 +207,12 @@ export default {
         },
         {
           path: '/main/Manager/exportFile',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '数据导出'
         },
         {
           path: '/main/Manager/modifyInfo',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '账号信息维护'
         }
       ]
@@ -224,17 +224,17 @@ export default {
         },
         {
           path: '/main/Student/stuGetCloth',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '衣物查询与申请'
         },
         {
           path: '/main/Student/modifyApply',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '申请修改与删除'
         },
         {
           path: '/main/student/modifyInfo',
-          icon: 'suncaper-menu-unfold',
+          icon: 'wmj-menu-unfold',
           title: '账号信息维护'
         }
       ]

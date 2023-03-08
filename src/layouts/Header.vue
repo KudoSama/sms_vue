@@ -13,7 +13,7 @@
       >
         <s-tooltip effect="dark" content="退出" placement="bottom">
           <s-icon
-            icon="suncaper-quit"
+            icon="wmj-quit"
           />
         </s-tooltip>
       </a>

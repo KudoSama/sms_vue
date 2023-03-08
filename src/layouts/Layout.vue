@@ -35,7 +35,7 @@ import Sidebar from './Sidebar/Sidebar'
 import {mapGetters} from 'vuex'
 
 export default {
-  name: 'suncaper-layout',
+  name: 'wmj-layout',
   props: {
     theme: String,
     sidebarList: Array,
