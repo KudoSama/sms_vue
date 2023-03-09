@@ -4,6 +4,7 @@
       <span class="header-title text-center">当前批次为：{{curBatch}} </span>
     </div>
       <div class="header-right">
+        <el-button type="primary" @click="notice">查看通知</el-button>
         <span class="header-title text-center">欢迎您，{{userName}}</span>
       <a
         href="javascript:"
@@ -18,6 +19,7 @@
         </s-tooltip>
       </a>
   </div>
+    <notice-list ref="noticeList"></notice-list>
   </div>
 </template>
 
@@ -25,6 +27,7 @@
 import Icon from '@/components/Icon'
 import {Tooltip} from 'element-ui'
 import {mapGetters} from 'vuex'
+import NoticeList from '../pages/main/components/notice/noticeList'
 
 export default {
   name: 's-header',
@@ -34,6 +37,7 @@ export default {
     }
   },
   components: {
+    NoticeList,
     's-icon': Icon,
     's-tooltip': Tooltip
   },
@@ -85,8 +89,10 @@ export default {
           this.curBatch = res.data.message
         }
       })
+    },
+    notice () {
+      this.$refs.noticeList.show()
     }
-
   }
 }
 

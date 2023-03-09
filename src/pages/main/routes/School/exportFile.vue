@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h1>导出文件</h1>
-        <el-button type="success" @click="getCheckState">导出审核状态</el-button>
-        <el-button type="success" @click="getresult">导出申请结果</el-button>
+        <h1>请选择您需要导出的数据</h1>
+        <el-button type="primary" @click="getCheckState">导出审核状态</el-button>
+        <el-button type="primary" @click="getresult">导出申请结果</el-button>
     </div>
 </template>
 

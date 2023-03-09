@@ -14,11 +14,19 @@
                 </el-carousel-item>
             </el-carousel>
         </template>
+      <notice-list ref="noticeList"></notice-list>
     </div>
 </template>
 <script>
+import NoticeList from '../../components/notice/noticeList'
 export default {
   name: 'mainPage',
+  components: {
+    NoticeList
+  },
+  mounted () {
+    this.notice()
+  },
   data () {
     return {
       imgs: [
@@ -26,6 +34,11 @@ export default {
         require('../../../../assets/images/pic2.jpg'),
         require('../../../../assets/images/pic3.jpg') // 尽可能上传横向图片，竖向图片显示效果不好
       ]
+    }
+  },
+  methods: {
+    notice () {
+      this.$refs.noticeList.showFromMain()
     }
   }
 }
