@@ -14,12 +14,12 @@
           <el-input v-model="applyRecord.clothId" disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="衣物尺码">
-          <el-select v-model="applyRecord.clothSize" placeholder="请选择">
+          <el-select v-model="sizeValue" placeholder="请选择">
             <el-option
                 v-for="item in clothSizeList"
-                :key="item.value"
+                :key="item.sizeValue"
                 :label="item.label"
-                :value="item.value">
+                :value="item.sizeValue">
             </el-option>
           </el-select>
         </el-form-item>
@@ -49,7 +49,7 @@ export default {
         clothId: '',
         clothSize: ''
       },
-      value: '',
+      sizeValue: '',
       clothSizeList: [],
       appReason: ''
     }
@@ -59,7 +59,7 @@ export default {
       let std = {
         batchId: this.applyRecord.batchId,
         clothId: this.applyRecord.clothId,
-        clothSize: this.applyRecord.clothSize,
+        clothSize: this.sizeValue,
         appReason: this.appReason
       }
       this.$axios.post('/api/stuApply/apply', std).then(res => {
@@ -69,8 +69,13 @@ export default {
           this.dialogVisible = false
           this.applyRecord = {}
           this.appReason = ''
+          this.sizeValue = ''
         } else {
           Vue.prototype.$message.error(res.data.message)
+          this.dialogVisible = false
+          this.applyRecord = {}
+          this.appReason = ''
+          this.sizeValue = ''
         }
       })
     },
@@ -78,7 +83,7 @@ export default {
       this.clothSizeList = []
       this.dialogVisible = true
       for (let i = 0; i < clothRecord.clothSize.length; i++) {
-        let val = {value: clothRecord.clothSize[i], label: clothRecord.clothSize[i]}
+        let val = {sizeValue: clothRecord.clothSize[i], label: clothRecord.clothSize[i]}
         this.clothSizeList.push(val)
       }
       // console.log(this.clothSizeList)
@@ -91,6 +96,7 @@ export default {
       this.dialogVisible = false
       this.applyRecord = {}
       this.appReason = ''
+      this.sizeValue = ''
     }
   }
 }
