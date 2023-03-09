@@ -36,7 +36,6 @@ export default {
         batchId: '',
         batchDatestart: '',
         batchDateend: ''
-
       }
     }
   },

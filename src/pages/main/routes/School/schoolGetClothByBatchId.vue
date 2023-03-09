@@ -49,7 +49,8 @@
               label="操作"
               width="auto">
             <template slot-scope="scope">
-              <el-button type="primary" size="mini" @click="showDetail(scope.row)">添加尺码</el-button>
+              <el-button type="success" size="mini" @click="showDetail(scope.row)">添加尺码</el-button>
+              <el-button type="primary" size="mini" @click="showDetailEdit(scope.row)">修改衣物</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -64,14 +65,16 @@
           :total="pageList.total">
       </el-pagination>
       <add-cloth-size-dialog ref="addClothSizeDialog"></add-cloth-size-dialog>
+      <cloth-editdialog ref="clothEditDialog"></cloth-editdialog>
     </div>
 </template>
 
 <script>
 import AddClothSizeDialog from '../../components/addClothSize/addClothSizeDialog'
+import ClothEditdialog from '../../components/cloth/clothEditDialog'
 export default {
   name: 'schoolGetClothByBatchId',
-  components: {AddClothSizeDialog},
+  components: {ClothEditdialog, AddClothSizeDialog},
   created () {
     this.clothList()
   },
@@ -121,6 +124,9 @@ export default {
     },
     showDetail (clothRecord) {
       this.$refs.addClothSizeDialog.show(clothRecord)
+    },
+    showDetailEdit (clothRecord) {
+      this.$refs.clothEditDialog.show(clothRecord)
     }
   }
 }

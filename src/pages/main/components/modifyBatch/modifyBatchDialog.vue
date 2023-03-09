@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog title="修改批次号"
+    <el-dialog title="修改批次"
                append-to-body
                :visible.sync="dialogVisible"
                width="30%"

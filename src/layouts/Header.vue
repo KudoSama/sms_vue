@@ -4,7 +4,9 @@
       <span class="header-title text-center">当前批次为：{{curBatch}} </span>
     </div>
       <div class="header-right">
-        <el-button type="primary" @click="notice">查看通知</el-button>
+        <el-badge :value=noticeNum class="item">
+          <el-button type="primary" size="medium" @click="notice">查看通知</el-button>
+        </el-badge>
         <span class="header-title text-center">欢迎您，{{userName}}</span>
       <a
         href="javascript:"
@@ -33,7 +35,8 @@ export default {
   name: 's-header',
   data: function () {
     return {
-      curBatch: null
+      curBatch: null,
+      noticeNum: 0
     }
   },
   components: {
@@ -65,9 +68,22 @@ export default {
   created () {
     this.getCurBatch()
     this.$forceUpdate()
+    this.getNoticeNunber()
     // console.info(this.userName)
   },
   methods: {
+    getNoticeNunber () {
+      this.$axios.post('/api/notice/getCurNotice').then(res => {
+        // console.log(res.data.data)
+        if (res.data.data !== null) {
+          for (let index in res.data.data) {
+            this.noticeNum = Number(index) + 1
+          }
+        } else {
+          this.noticeNum = 0
+        }
+      })
+    },
     logout () {
       this.$confirm('即将退出登录, 是否继续?', '提示', {
         type: 'warning'
@@ -100,6 +116,10 @@ export default {
 
 <style lang="less" scoped>
   @import "../assets/styles/var";
+  .item {
+    margin-top: 9px;
+    margin-right: 20px;
+  }
   .header {
     width: 100%;
     height: 60px;

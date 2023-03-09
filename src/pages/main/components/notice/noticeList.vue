@@ -1,6 +1,6 @@
 <template>
   <el-drawer
-      title="通知"
+      title="通 知"
       :visible.sync="table"
       direction="rtl"
       size="50%">

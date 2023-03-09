@@ -79,10 +79,10 @@ export default {
           ]
         },
         {
-          path: '/main/School',
+          path: '/main/School/college',
           icon: 'wmj-menu-unfold',
           title: '学院管理',
-          group: 'second',
+          group: 'college',
           children: [
             {
               path: '/main/School/addCollegeAccount',
@@ -93,6 +93,24 @@ export default {
               path: '/main/School/modifyCollegeInfo',
               icon: 'wmj-menu-unfold',
               title: '重置学院用户密码'
+            }
+          ]
+        },
+        {
+          path: '/main/School/notice',
+          icon: 'wmj-menu-unfold',
+          title: '通知管理',
+          group: 'notice',
+          children: [
+            {
+              path: '/main/School/addNotice',
+              icon: 'wmj-menu-unfold',
+              title: '添加通知'
+            },
+            {
+              path: '/main/School/modifyNotice',
+              icon: 'wmj-menu-unfold',
+              title: '通知管理'
             }
           ]
         },

@@ -112,7 +112,7 @@ const mainPage = [
       },
       {
         path: 'School/modifyApply',
-        name: 'school_modifyApply',
+        name: 'School_modifyApply',
         component: () =>
             import(
               /* webpackChunkName: "Second" */ '../pages/main/routes/School/modifyApply'
@@ -128,15 +128,31 @@ const mainPage = [
       },
       {
         path: 'School/exportFile',
-        name: 'AddCollegeAccount',
+        name: 'School_exportFile',
         component: () =>
           import(
             /* webpackChunkName: "First" */ '../pages/main/routes/School/exportFile'
           )
       },
       {
+        path: 'School/modifyNotice',
+        name: 'School_modifyNotice',
+        component: () =>
+          import(
+            /* webpackChunkName: "First" */ '../pages/main/routes/School/modifyNotice'
+          )
+      },
+      {
+        path: 'School/addNotice',
+        name: 'School_addNotice',
+        component: () =>
+          import(
+            /* webpackChunkName: "First" */ '../pages/main/routes/School/addNotice'
+          )
+      },
+      {
         path: 'College/addManager',
-        name: 'AddCollegeAccount',
+        name: 'AddManagerAccount',
         component: () =>
             import(
               /* webpackChunkName: "First" */ '../pages/main/routes/College/addManager'
