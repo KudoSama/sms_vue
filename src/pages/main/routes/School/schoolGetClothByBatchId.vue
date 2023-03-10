@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1 align="center">当前批次衣物</h1>
+      <div style="width: 80%; text-align: center; margin: auto">
         <el-table
             border
             stripe
@@ -64,6 +65,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      </div>
       <add-cloth-size-dialog ref="addClothSizeDialog"></add-cloth-size-dialog>
       <cloth-editdialog ref="clothEditDialog"></cloth-editdialog>
     </div>

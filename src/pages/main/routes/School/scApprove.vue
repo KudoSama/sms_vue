@@ -1,6 +1,7 @@
 <template>
 <div>
     <h1 align="center">申请记录审核</h1>
+  <div style="width: 80%; text-align: center; margin: auto">
     <el-button type="success" @click="agreeByBatch" v-if="ids.length > 0">批量通过</el-button>
     <el-table
             :data="applistNot"
@@ -61,6 +62,7 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="pageList.total">
   </el-pagination>
+  </div>
     <application-record-dialog ref="stuApplyNot"></application-record-dialog>
     <ref-reason-dialog ref="refReasondialog"></ref-reason-dialog>
 </div>

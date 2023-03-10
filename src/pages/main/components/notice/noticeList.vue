@@ -3,7 +3,8 @@
       title="通 知"
       :visible.sync="table"
       direction="rtl"
-      size="50%">
+      size="50%"
+      style="text-align: center;margin: auto">
     <el-table :data="gridData" border>
       <el-table-column property="date" label="日期" :formatter="dateFormat" width="150"></el-table-column>
       <el-table-column property="notice" label="通知"></el-table-column>

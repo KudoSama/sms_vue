@@ -33,8 +33,8 @@
       </el-form>
       <h3 align="center">如邮箱已更换，请联系数据库管理员重置邮箱</h3>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="handleClose">取 消</el-button>
     <el-button type="primary" @click="resetPassword">重 置</el-button>
+        <el-button @click="handleClose">取 消</el-button>
   </span>
     </el-dialog>
   </div>

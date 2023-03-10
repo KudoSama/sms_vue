@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1 align="center">可申请衣物列表</h1>
+      <div style="width: 80%; text-align: center; margin: auto">
         <el-table
                 :data="clothlist"
                 style="width: 100%"
@@ -58,6 +59,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      </div>
       <stu-apply ref="StuApply"></stu-apply>
     </div>
 </template>

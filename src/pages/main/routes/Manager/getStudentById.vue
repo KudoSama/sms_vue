@@ -1,6 +1,7 @@
 <template>
 <div>
-    <h1 align="center">学生查询界面</h1>
+    <h1 align="center">学生查询界面（不输入点击查询则获取全部学生）</h1>
+  <div style="width: 80%; text-align: center; margin: auto">
   <el-form>
     <el-input v-model="gender" style="width: 200px" clearable placeholder="请输入性别（男/女）"></el-input>
     <el-button type="primary" @click="getStuByGender">性别查询</el-button>
@@ -10,7 +11,7 @@
   </el-form>
     <el-table
             :data="list"
-            style="width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)"
+            style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)"
             border>
         <el-table-column
                 prop="stuId"
@@ -66,6 +67,7 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="pageList.total">
   </el-pagination>
+  </div>
 </div>
 </template>
 
@@ -211,30 +213,38 @@ export default {
     },
     getStuById () {
       this.pageFlag = 1
-      this.$axios.post('/api/student/getByStuId', this.user).then(res => {
-        // console.log(res)
-        this.student = res.data.data
-        if (this.student === null) {
-          this.list = null
-          this.pageList.total = 0
-        } else {
-          this.list = [this.student]
-          this.pageList.total = 1
-        }
-      })
+      if (this.user.id === '' || this.user.id === null) {
+        this.stuList()
+      } else {
+        this.$axios.post('/api/student/getByStuId', this.user).then(res => {
+          // console.log(res)
+          this.student = res.data.data
+          if (this.student === null) {
+            this.list = null
+            this.pageList.total = 0
+          } else {
+            this.list = [this.student]
+            this.pageList.total = 1
+          }
+        })
+      }
     },
     getStuByGender () {
       this.pageFlag = 2
-      let data = {pageList: this.pageList, gender: this.gender}
-      this.$axios.post('/api/student/getByGender', data).then(res => {
-        if (res.data.data === null) {
-          this.list = null
-          this.pageList.total = 0
-        } else {
-          this.list = res.data.data.records
-          this.pageList.total = res.data.data.total
-        }
-      })
+      if (this.gender === '' || this.gender === null) {
+        this.stuList()
+      } else {
+        let data = {pageList: this.pageList, gender: this.gender}
+        this.$axios.post('/api/student/getByGender', data).then(res => {
+          if (res.data.data === null) {
+            this.list = null
+            this.pageList.total = 0
+          } else {
+            this.list = res.data.data.records
+            this.pageList.total = res.data.data.total
+          }
+        })
+      }
     },
     pageSizeChange (val) {
       this.pageList.pageSize = val

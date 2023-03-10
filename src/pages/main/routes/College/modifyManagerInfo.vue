@@ -2,6 +2,7 @@
 
   <div>
     <h1 align="center">重置辅导员用户密码</h1>
+    <div style="width: 80%; text-align: center; margin: auto">
     <el-table
         :data="managerList"
         border
@@ -34,6 +35,7 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="pageList.total">
     </el-pagination>
+    </div>
   </div>
 </template>
 

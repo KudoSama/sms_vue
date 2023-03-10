@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 align="center">修改通知</h1>
+    <div style="width: 80%; text-align: center; margin: auto">
     <el-table
         :data="noticeList"
         border
@@ -36,6 +37,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
     <modify-notice-dialog ref="modifyNoticeDialog"></modify-notice-dialog>
   </div>
 </template>

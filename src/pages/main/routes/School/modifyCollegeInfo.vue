@@ -2,6 +2,7 @@
 
   <div>
     <h1 align="center">重置学院用户密码</h1>
+    <div style="width: 80%; text-align: center; margin: auto">
     <el-table
         :data="collegeList"
         border
@@ -24,6 +25,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
   </div>
 </template>
 

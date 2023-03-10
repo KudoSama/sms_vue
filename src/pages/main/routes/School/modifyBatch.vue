@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 align="center">修改申请批次</h1>
+    <div style="width: 80%; text-align: center; margin: auto">
     <el-table
         :data="batchList"
         border
@@ -31,6 +32,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
     <modify-batch-dialog ref="modifyBatchDialog"></modify-batch-dialog>
   </div>
 </template>

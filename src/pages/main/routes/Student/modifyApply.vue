@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1 align="center">修改申请</h1>
+      <div style="width: 80%; text-align: center; margin: auto">
         <el-table
                 :data="appListNot"
                 border
@@ -53,6 +54,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      </div>
         <stu-change-appdialog ref="stuChangeAppdialog"></stu-change-appdialog>
 
     </div>

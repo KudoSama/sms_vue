@@ -1,10 +1,9 @@
 <template>
     <div>
         <h1 align="center">查询衣物</h1>
+      <div style="width: 80%; text-align: center; margin: auto">
         <el-input style="width: 200px" v-model="input"  placeholder="请输入性别（男/女）"></el-input>
       <el-button type="primary" @click="clothList">查询</el-button>
-        <br>
-        <h3>查询结果</h3>
         <el-table
             border
             stripe
@@ -39,6 +38,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      </div>
     </div>
 </template>
 

@@ -5,7 +5,7 @@
     </div>
       <div class="header-right">
         <el-badge :value=noticeNum class="item">
-          <el-button type="primary" size="medium" @click="notice">查看通知</el-button>
+          <el-button icon="el-icon-message-solid" type="primary" size="medium" @click="notice">查看通知</el-button>
         </el-badge>
         <span class="header-title text-center">欢迎您，{{userName}}</span>
       <a
@@ -20,7 +20,7 @@
           />
         </s-tooltip>
       </a>
-  </div>
+    </div>
     <notice-list ref="noticeList"></notice-list>
   </div>
 </template>

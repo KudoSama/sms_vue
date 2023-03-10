@@ -1,6 +1,7 @@
 <template>
     <div>
     <h1 align="center">审核历史</h1>
+      <div style="width: 80%; text-align: center; margin: auto">
     <el-table
             :data="applistNot"
             border
@@ -57,6 +58,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      </div>
     <application-record-dialog ref="applied"></application-record-dialog>
     </div>
 </template>

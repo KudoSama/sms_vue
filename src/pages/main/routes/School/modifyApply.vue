@@ -1,13 +1,13 @@
 <template>
     <div>
         <h1 align="center">修改学生申请</h1>
+      <div style="width: 80%; text-align: center; margin: auto">
         <el-table
                 :data="applistNot"
-                border
-                style="width: 100%">
+                border>
             <el-table-column
                     prop="id"
-                    label="批次编号"
+                    label="申请编号"
                     width="150">
             </el-table-column>
             <el-table-column
@@ -58,6 +58,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="pageList.total">
       </el-pagination>
+      </div>
         <sch-change-a-p-p-dialog ref="schChangeAPPDialog"></sch-change-a-p-p-dialog>
 
     </div>
