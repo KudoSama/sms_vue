@@ -38,11 +38,6 @@ export default {
               group: 'chlothByid'
             },
             {
-              path: '/main/School/addImg',
-              icon: 'wmj-menu-unfold',
-              title: '添加衣物图片'
-            },
-            {
               path: '/main/School/schoolGetClothByBatchId',
               icon: 'wmj-menu-unfold',
               title: '查询衣物（批次）'

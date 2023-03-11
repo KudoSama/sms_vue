@@ -47,14 +47,6 @@ const mainPage = [
           )
       },
       {
-        path: 'School/addImg',
-        name: 'school_addClothBySize',
-        component: () =>
-            import(
-              /* webpackChunkName: "Second" */ '../pages/main/routes/School/addClothImg'
-            )
-      },
-      {
         path: 'School/addBatch',
         name: 'school_addBatch',
         component: () =>
