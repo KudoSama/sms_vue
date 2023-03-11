@@ -48,10 +48,11 @@
           </el-table-column>
           <el-table-column
               label="操作"
-              width="auto">
+              width="300px">
             <template slot-scope="scope">
               <el-button type="success" size="mini" @click="showDetail(scope.row)">添加尺码</el-button>
               <el-button type="primary" size="mini" @click="showDetailEdit(scope.row)">修改衣物</el-button>
+              <el-button type="danger" size="mini" @click="deleteCloth(scope.row.clothId)">删除衣物</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -74,6 +75,7 @@
 <script>
 import AddClothSizeDialog from '../../components/addClothSize/addClothSizeDialog'
 import ClothEditdialog from '../../components/cloth/clothEditDialog'
+import Vue from 'vue'
 export default {
   name: 'schoolGetClothByBatchId',
   components: {ClothEditdialog, AddClothSizeDialog},
@@ -129,6 +131,30 @@ export default {
     },
     showDetailEdit (clothRecord) {
       this.$refs.clothEditDialog.show(clothRecord)
+    },
+    deleteCloth (clothId) {
+      this.$confirm('该操作将删除衣物以及学生申请该衣服记录。是否删除该衣物？', '提示', {type: 'warning'})
+        .then(_ => {
+          this.$confirm('再次确认是否删除该衣物？', '提示', {type: 'warning'})
+            .then(_ => {
+              let val = {
+                clothId: clothId
+              }
+              this.$axios.post('/api/cloth/delete', val).then(res => {
+                // console.info(res)
+                if (res.data.status === true) {
+                  this.dialogVisible = false
+                  Vue.prototype.$message.success(res.data.message)
+                } else {
+                  Vue.prototype.$message.error(res.data.message)
+                }
+              })
+            })
+            .catch(_ => {
+            })
+        })
+        .catch(_ => {
+        })
     }
   }
 }

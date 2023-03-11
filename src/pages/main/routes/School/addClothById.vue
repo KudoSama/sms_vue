@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 align="center">添加衣物</h1>
+        <h1 align="center">添加本批次衣物</h1>
         <el-form ref="form" :model="form" label-width="100px">
             <el-col :span="10">
                 <el-form-item label="衣物id" >
@@ -11,7 +11,7 @@
                 </el-form-item>
 
                 <el-form-item label="批次号">
-                    <el-input v-model="form.batchId"></el-input>
+                    <el-input disabled="true" v-model="form.batchId"></el-input>
                 </el-form-item>
                 <el-form-item label="性别">
                     <el-select v-model="form.gender" placeholder="请选择性别">
@@ -23,7 +23,7 @@
 
             <br><br><br><br><br><br><br><br><br><br><br><br>
             <el-form-item>
-                <el-button type="primary" @click="addClothByid">立即添加</el-button>
+                <el-button type="primary" @click="addClothById">立即添加</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -34,6 +34,9 @@
 import Vue from 'vue'
 export default {
   name: 'addclothByid',
+  created () {
+    this.getCurBatch()
+  },
   data () {
     return {
       form: {
@@ -46,7 +49,7 @@ export default {
     }
   },
   methods: {
-    addClothByid () {
+    addClothById () {
       let clth = {
         clothId: this.form.clothId,
         clothName: this.form.clothName,
@@ -54,7 +57,6 @@ export default {
         batchId: this.form.batchId
 
       }
-
       this.$axios.post('api/cloth/add', clth).then(res => {
         // console.info(clth)
         // console.info(res.data)
@@ -62,6 +64,16 @@ export default {
           Vue.prototype.$message.success(res.data.message)
         } else {
           Vue.prototype.$message.error(res.data.message)
+        }
+      })
+    },
+    getCurBatch () {
+      this.$axios.post('/api/batch/getCurBatch').then(res => {
+        // console.info(res.data)
+        if (res.data !== null && res.data.status === true) {
+          this.form.batchId = res.data.data.batchId
+        } else {
+          this.form.batchId = '当前不属于申请批次，无法添加衣物'
         }
       })
     }
