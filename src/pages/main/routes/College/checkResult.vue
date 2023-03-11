@@ -92,7 +92,14 @@ export default {
       this.$axios.post('/api/stuApply/agreeBatch', this.ids).then(res => {
         // console.info(res)
         if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.data)
+          Vue.prototype.$message({
+            message: res.data.message,
+            type: 'success',
+            duration: 1500,
+            onClose: () => {
+              window.location.reload()
+            }
+          })
         } else {
           Vue.prototype.$message.error(res.data.data)
         }
@@ -103,7 +110,14 @@ export default {
       this.$axios.post('/api/stuApply/agreeBatch', val).then(res => {
         // console.info(res)
         if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.data)
+          Vue.prototype.$message({
+            message: res.data.message,
+            type: 'success',
+            duration: 1500,
+            onClose: () => {
+              window.location.reload()
+            }
+          })
         } else {
           Vue.prototype.$message.error(res.data.data)
         }

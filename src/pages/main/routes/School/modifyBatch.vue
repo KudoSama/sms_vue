@@ -97,7 +97,14 @@ export default {
                 // console.info(res)
                 if (res.data.status === true) {
                   this.dialogVisible = false
-                  Vue.prototype.$message.success(res.data.message)
+                  Vue.prototype.$message({
+                    message: res.data.message,
+                    type: 'success',
+                    duration: 1500,
+                    onClose: () => {
+                      window.location.reload()
+                    }
+                  })
                 } else {
                   Vue.prototype.$message.error(res.data.message)
                 }

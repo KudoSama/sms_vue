@@ -68,17 +68,15 @@ export default {
   created () {
     this.getCurBatch()
     this.$forceUpdate()
-    this.getNoticeNunber()
+    this.getNoticeNumber()
     // console.info(this.userName)
   },
   methods: {
-    getNoticeNunber () {
+    getNoticeNumber () {
       this.$axios.post('/api/notice/getCurNotice').then(res => {
-        // console.log(res.data.data)
+        console.log(res.data.data)
         if (res.data.data !== null) {
-          for (let index in res.data.data) {
-            this.noticeNum = Number(index) + 1
-          }
+          this.noticeNum = res.data.data.length
         } else {
           this.noticeNum = 0
         }

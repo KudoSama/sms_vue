@@ -68,8 +68,6 @@ export default {
       this.$axios.post('/api/notice/getNoticeList').then(res => {
         if (res.data.data !== null) {
           this.noticeList = res.data.data
-          // console.log(this.noticeList)
-          // Vue.prototype.$message.success(res.data.message)
         } else {
           Vue.prototype.$message.error(res.data.message)
         }
@@ -98,7 +96,14 @@ export default {
             // console.info(res)
             if (res.data.status === true) {
               this.dialogVisible = false
-              Vue.prototype.$message.success(res.data.message)
+              Vue.prototype.$message({
+                message: res.data.message,
+                type: 'success',
+                duration: 1500,
+                onClose: () => {
+                  window.location.reload()
+                }
+              })
             } else {
               Vue.prototype.$message.error(res.data.message)
             }

@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <el-dialog
         append-to-body
@@ -65,7 +64,14 @@ export default {
       this.$axios.post('/api/stuApply/apply', std).then(res => {
         // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.message)
+          Vue.prototype.$message({
+            message: res.data.message,
+            type: 'success',
+            duration: 1500,
+            onClose: () => {
+              window.location.reload()
+            }
+          })
           this.dialogVisible = false
           this.applyRecord = {}
           this.appReason = ''

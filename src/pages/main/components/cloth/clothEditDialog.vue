@@ -50,9 +50,15 @@ export default {
           this.$axios.post('/api/cloth/modify', this.cloth).then(res => {
             // console.info(res)
             if (res.data !== null && res.data.status === true) {
-              Vue.prototype.$message.success(res.data.message)
+              Vue.prototype.$message({
+                message: res.data.message,
+                type: 'success',
+                duration: 1500,
+                onClose: () => {
+                  window.location.reload()
+                }
+              })
               this.dialogVisible = false
-              this.fun()
             } else {
               Vue.prototype.$message.error(res.data.message)
             }

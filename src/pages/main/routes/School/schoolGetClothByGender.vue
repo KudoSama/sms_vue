@@ -43,9 +43,9 @@
               <div class="block">
                 <span class="demonstration"></span>
                 <el-carousel indicator-position="outside" trigger="click" :interval="3000"  height="100px">
-                  <el-carousel-item v-for="item in clothimglist.get(scope.row.clothId)" :key='item'>
+                  <el-carousel-item v-for="item in clothImgList.get(scope.row.clothId)" :key='item'>
                     <el-image :src="item"
-                              :preview-src-list="clothimglist.get(scope.row.clothId)"></el-image>
+                              :preview-src-list="clothImgList.get(scope.row.clothId)"></el-image>
                   </el-carousel-item>
                 </el-carousel>
               </div>
@@ -55,9 +55,10 @@
               label="操作"
               width="300px">
             <template slot-scope="scope">
-              <el-button type="success" size="mini" @click="showDetail(scope.row)">添加尺码</el-button>
-              <el-button type="primary" size="mini" @click="showDetailEdit(scope.row)">修改衣物</el-button>
-              <el-button type="danger" size="mini" @click="deleteCloth(scope.row.clothId)">删除衣物</el-button>
+              <el-button type="success" size="medium" @click="showDetail(scope.row)">添加尺码</el-button>
+              <el-button type="primary" size="medium" @click="showImageEdit(scope.row.clothId, clothImgList.get(scope.row.clothId))">上传 / 删除衣物图片</el-button><br>
+              <el-button type="warning" size="medium" @click="showDetailEdit(scope.row)">修改衣物</el-button>
+              <el-button type="danger" size="medium" @click="deleteCloth(scope.row.clothId)">删除衣物</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -74,16 +75,18 @@
       </div>
       <add-cloth-size-dialog ref="addClothSizeDialog"></add-cloth-size-dialog>
       <cloth-editdialog ref="clothEditDialog"></cloth-editdialog>
+      <modify-image-dialog ref="modifyImageDialog"></modify-image-dialog>
     </div>
 </template>
 
 <script>
 import AddClothSizeDialog from '../../components/addClothSize/addClothSizeDialog'
 import ClothEditdialog from '../../components/cloth/clothEditDialog'
-import Vue from 'vue/types/index'
+import Vue from 'vue'
+import ModifyImageDialog from '../../components/ClothImage/modifyImageDialog'
 export default {
   name: 'schoolGetClothByGender',
-  components: {ClothEditdialog, AddClothSizeDialog},
+  components: {ModifyImageDialog, ClothEditdialog, AddClothSizeDialog},
   created () {
     this.clothList()
   },
@@ -99,7 +102,7 @@ export default {
       },
       flag: '',
       clothsizelist: [],
-      clothimglist: [],
+      clothImgList: [],
       clothImg: ''
     }
   },
@@ -114,7 +117,7 @@ export default {
       this.$axios.post('/api/cloth/schoolGetClothByGender', data).then(res => {
         // console.info(res)
         this.clothlist = res.data.data.records
-        this.clothimglist = new Map(Object.entries(res.data.otherData))
+        this.clothImgList = new Map(Object.entries(res.data.otherData))
         for (let i = 0; i < this.clothlist.length; i++) {
           val[this.clothlist[i].clothId] = this.clothSizeList(this.clothlist[i].clothId)
         }
@@ -148,6 +151,9 @@ export default {
     },
     showDetailEdit (clothRecord) {
       this.$refs.clothEditDialog.show(clothRecord)
+    },
+    showImageEdit (clothId, clothImgList) {
+      this.$refs.modifyImageDialog.show(clothId, clothImgList)
     },
     deleteCloth (clothId) {
       this.$confirm('该操作将删除衣物以及学生申请该衣服记录。是否删除该衣物？', '提示', {type: 'warning'})
