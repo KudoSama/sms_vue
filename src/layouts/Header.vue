@@ -74,7 +74,7 @@ export default {
   methods: {
     getNoticeNumber () {
       this.$axios.post('/api/notice/getCurNotice').then(res => {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         if (res.data.data !== null) {
           this.noticeNum = res.data.data.length
         } else {

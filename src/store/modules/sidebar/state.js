@@ -16,7 +16,7 @@ export default {
               path: '/main/School/addBatch',
               icon: 'wmj-menu-unfold',
               title: '添加批次',
-              group: 'chlothBath'
+              group: 'clothBath'
             },
             {
               path: '/main/School/modifyBatch',
@@ -29,13 +29,13 @@ export default {
           path: '/main/School/School',
           icon: 'wmj-menu-unfold',
           title: '衣物管理',
-          group: 'clothadd',
+          group: 'clothAdd',
           children: [
             {
               path: '/main/School/addClothById',
               icon: 'wmj-menu-unfold',
               title: '添加衣物',
-              group: 'chlothByid'
+              group: 'clothById'
             },
             {
               path: '/main/School/schoolGetClothByBatchId',
@@ -130,7 +130,7 @@ export default {
           path: '/main/College',
           icon: 'wmj-menu-unfold',
           title: '申请审核',
-          group: 'clothapply',
+          group: 'clothApply',
           children: [
             {
               path: '/main/College/colApprove',
@@ -184,7 +184,7 @@ export default {
           path: '/main/Manager',
           icon: 'wmj-menu-unfold',
           title: '衣物申请审核',
-          group: 'clothapply',
+          group: 'clothApply',
           children: [
             {
               path: '/main/Manager/manApprove',

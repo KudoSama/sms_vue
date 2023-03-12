@@ -48,7 +48,25 @@ function checkCode (res, errMsg) {
         Message.error('您需要重新登录！')
         break
       default:
-        errMsg ? Message.error(errMsg) : Message.error(res.data.message || '未知异常')
+        if (res.data.message === '未登录，请重新登陆') {
+          // 不处于登录界面且未登录，显示完信息后跳转至登录界面
+          if (window.location.href !== window.location.origin + '/#/' &&
+            window.location.href !== window.location.origin + '/#/login' &&
+            window.location.href !== window.location.origin + '/' &&
+            window.location.href !== window.location.origin + '/login' &&
+            window.location.href !== window.location.origin) {
+            Vue.prototype.$message({
+              message: res.data.message,
+              type: 'error',
+              duration: 1500,
+              onClose: () => {
+                window.location.replace('/')
+              }
+            })
+          }
+        } else {
+          errMsg ? Message.error(errMsg) : Message.error(res.data.message || '未知异常')
+        }
     }
     this.$axios.post('/api/user/refresh')
     this.$router.push('/')
