@@ -63,14 +63,7 @@ export default {
           this.$axios.post('/api/stuApply/schoolModify', val).then(res => {
             // console.info(res)
             if (res.data !== null && res.data.status === true) {
-              Vue.prototype.$message({
-                message: res.data.message,
-                type: 'success',
-                duration: 1500,
-                onClose: () => {
-                  window.location.reload()
-                }
-              })
+              Vue.prototype.$message.success(res.data.message)
               this.dialogVisible = false
             } else {
               Vue.prototype.$message.error(res.data.message)

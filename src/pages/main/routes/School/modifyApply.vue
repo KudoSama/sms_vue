@@ -102,6 +102,7 @@ export default {
     deleteApply (apply) {
       this.$confirm('是否删除该申请记录？', '提示', {type: 'warning'}).then(_ => {
         this.$axios.post('api/stuApply/deleteApply', {'id': apply.id}).then(res => {
+          Vue.prototype.$message.success(res.data.message)
           Vue.prototype.$message({
             message: res.data.message,
             type: 'success',

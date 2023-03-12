@@ -50,28 +50,30 @@ export default {
   },
   methods: {
     addClothById () {
-      let clth = {
+      let cloth = {
         clothId: this.form.clothId,
         clothName: this.form.clothName,
         gender: this.form.gender,
         batchId: this.form.batchId
-
       }
-      this.$axios.post('api/cloth/add', clth).then(res => {
-        // console.info(clth)
-        // console.info(res.data)
-        if (res.data !== null && res.data.status === true) {
-          Vue.prototype.$message.success(res.data.message)
-        } else {
-          Vue.prototype.$message.error(res.data.message)
-        }
-      })
+      // console.log(typeof cloth.batchId)
+      if (typeof cloth.batchId !== 'number') {
+        Vue.prototype.$message.error('当前不属于申请时间')
+      } else {
+        this.$axios.post('api/cloth/add', cloth).then(res => {
+          if (res.data !== null && res.data.status === true) {
+            Vue.prototype.$message.success(res.data.message)
+          } else {
+            Vue.prototype.$message.error(res.data.message)
+          }
+        })
+      }
     },
     getCurBatch () {
       this.$axios.post('/api/batch/getCurBatch').then(res => {
         // console.info(res.data)
         if (res.data !== null && res.data.status === true) {
-          this.form.batchId = res.data.data.batchId
+          this.form.batchId = Number(res.data.data.batchId)
         } else {
           this.form.batchId = '当前不属于申请批次，无法添加衣物'
         }
