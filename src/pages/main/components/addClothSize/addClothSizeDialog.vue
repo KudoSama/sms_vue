@@ -13,31 +13,43 @@
         <el-form-item>
             <el-switch
                 v-model="value0"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
                 inactive-text="XS"
                 @change="modifySize('XS')">
             </el-switch><br>
             <el-switch
                 v-model="value1"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
                 inactive-text="S"
                 @change="modifySize('S')">
             </el-switch><br>
             <el-switch
                 v-model="value2"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
                 inactive-text="M"
                 @change="modifySize('M')">
             </el-switch><br>
             <el-switch
                 v-model="value3"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
                 inactive-text="L"
                 @change="modifySize('L')">
             </el-switch><br>
             <el-switch
                 v-model="value4"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
                 inactive-text="XL"
                 @change="modifySize('XL')">
             </el-switch><br>
             <el-switch
                 v-model="value5"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
                 inactive-text="XXL"
                 @change="modifySize('XXL')">
             </el-switch>
