@@ -40,6 +40,11 @@
               label="审核状态"
               width="120">
           </el-table-column>
+          <el-table-column
+              prop="ref_reason"
+              label="拒绝理由"
+              width="120">
+          </el-table-column>
             <el-table-column
                     label="操作">
                 <template slot-scope="scope">

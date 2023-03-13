@@ -50,9 +50,9 @@
               label="操作"
               width="300px">
             <template slot-scope="scope">
-              <el-button type="success" size="medium" @click="showDetail(scope.row)">添加尺码</el-button>
-              <el-button type="primary" size="medium" @click="showImageEdit(scope.row.clothId, clothImgList.get(scope.row.clothId))">上传 / 删除衣物图片</el-button><br>
-              <el-button type="warning" size="medium" @click="showDetailEdit(scope.row)">修改衣物</el-button>
+              <el-button type="success" size="medium" @click="showDetail(scope.row)">修改尺码</el-button>
+              <el-button type="primary" size="medium" @click="showImageEdit(scope.row.clothId, clothImgList.get(scope.row.clothId))">修改图片</el-button><br>
+              <el-button type="warning" size="medium" @click="showDetailEdit(scope.row)">修改信息</el-button>
               <el-button type="danger" size="medium" @click="deleteCloth(scope.row.clothId)">删除衣物</el-button>
             </template>
           </el-table-column>
@@ -69,19 +69,19 @@
       </el-pagination>
       </div>
       <add-cloth-size-dialog ref="addClothSizeDialog"></add-cloth-size-dialog>
-      <cloth-editdialog ref="clothEditDialog"></cloth-editdialog>
+      <cloth-edit-dialog ref="clothEditDialog"></cloth-edit-dialog>
       <modify-image-dialog ref="modifyImageDialog"></modify-image-dialog>
     </div>
 </template>
 
 <script>
 import AddClothSizeDialog from '../../components/addClothSize/addClothSizeDialog'
-import ClothEditdialog from '../../components/cloth/clothEditDialog'
+import clothEditDialog from '../../components/cloth/clothEditDialog'
 import Vue from 'vue'
 import ModifyImageDialog from '../../components/ClothImage/modifyImageDialog'
 export default {
   name: 'schoolGetClothByBatchId',
-  components: {ModifyImageDialog, ClothEditdialog, AddClothSizeDialog},
+  components: {ModifyImageDialog, clothEditDialog, AddClothSizeDialog},
   created () {
     this.clothList()
   },
@@ -130,6 +130,7 @@ export default {
       this.clothList()
     },
     showDetail (clothRecord) {
+      clothRecord = JSON.parse(JSON.stringify(clothRecord))
       this.$refs.addClothSizeDialog.show(clothRecord)
     },
     showDetailEdit (clothRecord) {

@@ -13,32 +13,34 @@
         <el-form-item>
             <el-switch
                 v-model="value0"
-                inactive-text="XS">
-            </el-switch>
+                inactive-text="XS"
+                @change="modifySize('XS')">
+            </el-switch><br>
             <el-switch
                 v-model="value1"
-                inactive-text="S">
-            </el-switch>
+                inactive-text="S"
+                @change="modifySize('S')">
+            </el-switch><br>
             <el-switch
                 v-model="value2"
-                inactive-text="M">
-            </el-switch>
+                inactive-text="M"
+                @change="modifySize('M')">
+            </el-switch><br>
             <el-switch
                 v-model="value3"
-                inactive-text="L">
-            </el-switch>
+                inactive-text="L"
+                @change="modifySize('L')">
+            </el-switch><br>
             <el-switch
                 v-model="value4"
-                inactive-text="XL">
-            </el-switch>
+                inactive-text="XL"
+                @change="modifySize('XL')">
+            </el-switch><br>
             <el-switch
                 v-model="value5"
-                inactive-text="XXL ">
+                inactive-text="XXL"
+                @change="modifySize('XXL')">
             </el-switch>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="addClothSize">添 加</el-button>
-          <el-button @click="close">取 消</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -63,97 +65,198 @@ export default {
       value2: false,
       value3: false,
       value4: false,
-      value5: false
+      value5: false,
+      clothSizeList: ''
     }
   },
   methods: {
-    addClothSize () {
-      if (this.value0 === true) {
-        let clothSize = {
-          clothId: this.clothRecord.clothId,
-          clothSize: 'XS'
-        }
-        this.$axios.post('/api/clothSize/add', clothSize).then(res => {
-          if (res.data !== null && res.data.status === true) {
-            Vue.prototype.$message.success(res.data.message)
-          } else {
-            Vue.prototype.$message.error(res.data.message)
+    modifySize (size) {
+      if (size === 'XS') {
+        if (this.value0) {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
           }
-        })
-      }
-      if (this.value1 === true) {
-        let clothSize = {
-          clothId: this.clothRecord.clothId,
-          clothSize: 'S'
-        }
-        this.$axios.post('/api/clothSize/add', clothSize).then(res => {
-          if (res.data !== null && res.data.status === true) {
-            Vue.prototype.$message.success(res.data.message)
-          } else {
-            Vue.prototype.$message.error(res.data.message)
+          this.$axios.post('/api/clothSize/add', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        } else {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
           }
-        })
-      }
-      if (this.value2 === true) {
-        let clothSize = {
-          clothId: this.clothRecord.clothId,
-          clothSize: 'M'
+          this.$axios.post('/api/clothSize/delete', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
         }
-        this.$axios.post('/api/clothSize/add', clothSize).then(res => {
-          if (res.data !== null && res.data.status === true) {
-            Vue.prototype.$message.success(res.data.message)
-          } else {
-            Vue.prototype.$message.error(res.data.message)
+      } else if (size === 'S') {
+        if (this.value1) {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
           }
-        })
-      }
-      if (this.value3 === true) {
-        let clothSize = {
-          clothId: this.clothRecord.clothId,
-          clothSize: 'L'
+          this.$axios.post('/api/clothSize/add', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        } else {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
+          }
+          this.$axios.post('/api/clothSize/delete', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
         }
-        this.$axios.post('/api/clothSize/add', clothSize).then(res => {
-          if (res.data !== null && res.data.status === true) {
-            Vue.prototype.$message.success(res.data.message)
-          } else {
-            Vue.prototype.$message.error(res.data.message)
+      } else if (size === 'M') {
+        if (this.value2) {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
           }
-        })
-      }
-      if (this.value4 === true) {
-        let clothSize = {
-          clothId: this.clothRecord.clothId,
-          clothSize: 'XL'
+          this.$axios.post('/api/clothSize/add', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        } else {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
+          }
+          this.$axios.post('/api/clothSize/delete', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
         }
-        this.$axios.post('/api/clothSize/add', clothSize).then(res => {
-          if (res.data !== null && res.data.status === true) {
-            Vue.prototype.$message.success(res.data.message)
-          } else {
-            Vue.prototype.$message.error(res.data.message)
+      } else if (size === 'L') {
+        if (this.value3) {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
           }
-        })
-      }
-      if (this.value5 === true) {
-        let clothSize = {
-          clothId: this.clothRecord.clothId,
-          clothSize: 'XXL'
+          this.$axios.post('/api/clothSize/add', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        } else {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
+          }
+          this.$axios.post('/api/clothSize/delete', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
         }
-        this.$axios.post('/api/clothSize/add', clothSize).then(res => {
-          if (res.data !== null && res.data.status === true) {
-            Vue.prototype.$message({
-              message: res.data.message,
-              type: 'success',
-              duration: 1500,
-              onClose: () => {
-                window.location.reload()
-              }
-            })
-          } else {
-            Vue.prototype.$message.error(res.data.message)
+      } else if (size === 'XL') {
+        if (this.value4) {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
           }
-        })
+          this.$axios.post('/api/clothSize/add', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        } else {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
+          }
+          this.$axios.post('/api/clothSize/delete', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        }
+      } else if (size === 'XXL') {
+        if (this.value5) {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
+          }
+          this.$axios.post('/api/clothSize/add', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        } else {
+          let clothSize = {
+            clothId: this.clothRecord.clothId,
+            clothSize: size
+          }
+          this.$axios.post('/api/clothSize/delete', clothSize).then(res => {
+            if (res.data !== null && res.data.status === true) {
+              Vue.prototype.$message.success(res.data.message)
+            } else {
+              Vue.prototype.$message.error(res.data.message)
+            }
+          })
+        }
       }
-      this.dialogVisible = false
+    },
+    getClothSizeList (clothId) {
+      let val = {params: {clothId: clothId}}
+      this.$axios.get('api/clothSize/getClothSizeByClothId', val).then(res => {
+        this.clothSizeList = res.data.data
+        for (let size of this.clothSizeList) {
+          // console.log(size)
+          switch (size.clothSize) {
+            case 'XS':
+              this.value0 = true
+              break
+            case 'S':
+              this.value1 = true
+              break
+            case 'M':
+              this.value2 = true
+              break
+            case 'L':
+              this.value3 = true
+              break
+            case 'XL':
+              this.value4 = true
+              break
+            case 'XXL':
+              this.value5 = true
+              break
+          }
+        }
+      })
     },
     handleClose (done) {
       this.$confirm('确认关闭？')
@@ -176,6 +279,7 @@ export default {
     show (clothRecord) {
       this.dialogVisible = true
       this.clothRecord = clothRecord
+      this.getClothSizeList(this.clothRecord.clothId)
     }
   }
 }

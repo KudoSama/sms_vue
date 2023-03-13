@@ -36,6 +36,16 @@
                     label="申请理由"
                     width="120">
             </el-table-column>
+          <el-table-column
+              prop="state"
+              label="审核状态"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="refReason"
+              label="拒绝理由"
+              width="120">
+          </el-table-column>
             <el-table-column
                     label="操作">
                 <template slot-scope="scope">
@@ -99,6 +109,7 @@ export default {
         if (res.data.data !== null) {
           this.appListNot = res.data.data.records
           this.pageList.total = res.data.data.total
+          console.log(this.appListNot)
           // Vue.prototype.$message.success(res.data.message)
         } else {
           Vue.prototype.$message.error(res.data.message)

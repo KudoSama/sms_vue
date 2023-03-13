@@ -25,7 +25,7 @@
 import Vue from 'vue'
 
 export default {
-  name: 'clothEditdialog',
+  name: 'clothEditDialog',
   data () {
     return {
       dialogVisible: false,

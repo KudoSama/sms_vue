@@ -4,7 +4,8 @@
         append-to-body
         title="学生申请"
         :visible.sync="dialogVisible"
-        width="30%">
+        width="30%"
+        :before-clos="closeDialog">
       <el-form ref="form" :model="applyRecord" label-width="80px">
         <el-form-item label="批次号">
           <el-input v-model="applyRecord.batchId" disabled="true"></el-input>
@@ -78,10 +79,6 @@ export default {
           this.sizeValue = ''
         } else {
           Vue.prototype.$message.error(res.data.message)
-          this.dialogVisible = false
-          this.applyRecord = {}
-          this.appReason = ''
-          this.sizeValue = ''
         }
       })
     },
