@@ -6,7 +6,7 @@
       size="50%"
       style="text-align: center;margin: auto">
     <el-table :data="gridData" border>
-      <el-table-column property="date" label="日期" :formatter="dateFormat" width="150"></el-table-column>
+      <el-table-column property="date" label="日期" :formatter="dateFormat" width="160"></el-table-column>
       <el-table-column property="notice" label="通知"></el-table-column>
     </el-table>
   </el-drawer>

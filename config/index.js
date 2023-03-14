@@ -43,6 +43,7 @@ module.exports = {
     https: true,
     host: '0.0.0.0', // can be overwritten by process.env.H
     port: 443, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    http2: true,
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

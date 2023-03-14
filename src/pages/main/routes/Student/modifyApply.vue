@@ -132,9 +132,8 @@ export default {
         })
         .catch(_ => {})
     },
-    showDetail (applyrecords) {
-      // console.info(applyrecords)
-      this.$refs.stuChangeAppdialog.show(applyrecords, this.findNotExamineStuModify)
+    showDetail (applyRecords) {
+      this.$refs.stuChangeAppdialog.show(applyRecords, this.findNotExamineStuModify)
     },
     pageSizeChange (val) {
       this.pageList.pageSize = val
