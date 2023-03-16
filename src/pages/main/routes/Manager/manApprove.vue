@@ -82,6 +82,7 @@ export default {
   },
   created () {
     this.findNotExamineStuApply()
+    this.getStuList()
   },
   data: function () {
     return {
@@ -92,7 +93,8 @@ export default {
       },
       applistNot: [],
       // 要通过的id集合
-      ids: []
+      ids: [],
+      stuList: []
     }
   },
   methods: {
@@ -138,6 +140,9 @@ export default {
         this.applistNot = res.data.data.records
         this.pageList.total = res.data.data.total
       })
+    },
+    getStuList () {
+
     },
     pageSizeChange (val) {
       this.pageList.pageSize = val
